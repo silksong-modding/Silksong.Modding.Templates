@@ -1,0 +1,50 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "BadMagic",
+  "classifications": [ "Mod", "Plugin", "silksong", "BepInEx" ],
+  "identity": "Silksong.Modding.Plugin",
+  "name": "Silksong Modding Plugin",
+  "shortName": "silksongplugin",
+  "sourceName": "SilksongPlugin.1",
+  "defaultName": "SilksongMod1",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "symbols": {
+    "silksong-install-path": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight Silksong",
+      "replaces": "SilksongInstallPath",
+      "description": "The installation path of Silksong"
+    },
+    "game-version": {
+      "type": "parameter",
+      "dataType": "choice",
+      "replaces": "SilksongVersion",
+      "description": "The version of Silksong being modded.",
+      "isRequired": true,
+      "choices": [
+        {
+          "choice": "1.0.28324",
+          "description": "Initial release."
+        }
+      ]
+    },
+    "unity-version": {
+      "type": "generated",
+      "replaces": "UnityVersion",
+      "generator": "switch",
+      "parameters": {
+        "dataType": "string",
+        "cases": [
+          {
+            "condition": "game-version == '1.0.28324'",
+            "value": "6000.0.50"
+          }
+        ]
+      }
+    }
+  }
+}
