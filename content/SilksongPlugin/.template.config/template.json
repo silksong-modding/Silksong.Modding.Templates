@@ -7,6 +7,11 @@
   "shortName": "silksongplugin",
   "sourceName": "SilksongPlugin.1",
   "defaultName": "SilksongMod1",
+  "primaryOutputs": [
+    {
+      "path": "SilksongPlugin.1.csproj"
+    }
+  ],
   "tags": {
     "language": "C#",
     "type": "project"
@@ -17,18 +22,24 @@
       "datatype": "string",
       "defaultValue": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight Silksong",
       "replaces": "SilksongInstallPath",
+      "displayName": "Silksong Install Path",
       "description": "The installation path of Silksong"
     },
     "game-version": {
       "type": "parameter",
       "dataType": "choice",
       "replaces": "SilksongVersion",
+      "displayName": "Game Version",
       "description": "The version of Silksong being modded.",
       "isRequired": true,
       "choices": [
         {
+          "choice": "1.0.28497",
+          "description": "First bugfix and balance patch. Released Sept 12 2025."
+        },
+        {
           "choice": "1.0.28324",
-          "description": "Initial release."
+          "description": "Initial release. Released Sept 4 2025."
         }
       ]
     },
@@ -40,11 +51,43 @@
         "dataType": "string",
         "cases": [
           {
-            "condition": "game-version == '1.0.28324'",
+            "condition": "game-version == '1.0.28324' || game-version == '1.0.28497'",
             "value": "6000.0.50"
           }
         ]
       }
+    },
+    "polysharp": {
+      "type": "parameter",
+      "datatype": "bool",
+      "displayName": "Enable PolySharp?",
+      "description": "Whether to enable PolySharp to polyfill newer language features that do not require runtime support.",
+      "defaultValue": "false"
     }
-  }
+  },
+  "postActions": [
+    {
+      "description": "Adding reference to PolySharp",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "condition": "polysharp",
+      "manualInstructions": [
+        {
+          "text": "Run `dotnet add package PolySharp`"
+        }
+      ],
+      "args": {
+        "referenceType": "package",
+        "reference": "PolySharp"
+      }
+    },
+    {
+      "description": "Restore dependencies",
+      "manualInstructions": [
+        {
+          "text": "Run `dotnet restore`"
+        }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025"
+    }
+  ]
 }
