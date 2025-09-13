@@ -13,6 +13,8 @@
     <RestoreAdditionalProjectSources>
         https://nuget.bepinex.dev/v3/index.json
     </RestoreAdditionalProjectSources>
+	  <!--Allow access of private members at runtime.-->
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup>
