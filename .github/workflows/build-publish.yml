@@ -21,3 +21,10 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build -c Release
+    # attempts to publish to NuGet on any push to main. Skips already-published versions.
+    - name: Publish NuGet
+      if: github.event-name == 'push'
+      run: |-
+        dotnet nuget push bin/Release/*.nupkg \
+            --api-key ${{ secrets.NUGET_TOKEN }} \
+            --source https://api.nuget.org/v3/index.json
