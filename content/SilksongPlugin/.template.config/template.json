@@ -34,6 +34,10 @@
       "isRequired": true,
       "choices": [
         {
+          "choice": "1.0.28561",
+          "description": "Second (less documented) bugfix and balance patch. Released Sept 12 2025."
+        },
+        {
           "choice": "1.0.28497",
           "description": "First bugfix and balance patch. Released Sept 12 2025."
         },
@@ -51,7 +55,7 @@
         "dataType": "string",
         "cases": [
           {
-            "condition": "game-version == '1.0.28324' || game-version == '1.0.28497'",
+            "condition": "game-version == '1.0.28324' || game-version == '1.0.28497' || game-version == '1.0.28561'",
             "value": "6000.0.50"
           }
         ]
