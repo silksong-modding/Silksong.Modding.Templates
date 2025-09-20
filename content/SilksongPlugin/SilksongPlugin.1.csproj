@@ -13,21 +13,21 @@
     <RestoreAdditionalProjectSources>
         https://nuget.bepinex.dev/v3/index.json
     </RestoreAdditionalProjectSources>
-	  <!--Allow access of private members at runtime.-->
-	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <!--Allow access of private members at runtime.-->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup>
     <!--These properties will control the generated PluginInfo. Version is also used by various parts of the build system.-->
     <BepInExPluginGuid>silksongplugin__1</BepInExPluginGuid>
-    <BepInExPluginName>SilksongPlugin.1</BepInExPluginName>
+    <AssemblyTitle>SilksongPlugin.1</AssemblyTitle>
     <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.1.0" />
+    <PackageReference Include="Hamunii.BepInEx.AutoPlugin" Version="2.0.1" PrivateAssets="all"/>
     <PackageReference Include="UnityEngine.Modules" Version="UnityVersion" IncludeAssets="compile" />
     <!--If you're unable resolve this dependency, check that you're using the nuget v3 package feed instead of v2.-->
     <PackageReference Include="Silksong.GameLibs" Version="1.0.2-silksongSilksongVersion"/>
