@@ -47,6 +47,13 @@
         }
       ]
     },
+    "polysharp": {
+      "type": "parameter",
+      "datatype": "bool",
+      "displayName": "Enable PolySharp?",
+      "description": "Whether to enable PolySharp to polyfill newer language features that do not require runtime support.",
+      "defaultValue": "false"
+    },
     "unity-version": {
       "type": "generated",
       "replaces": "UnityVersion",
@@ -61,12 +68,12 @@
         ]
       }
     },
-    "polysharp": {
-      "type": "parameter",
-      "datatype": "bool",
-      "displayName": "Enable PolySharp?",
-      "description": "Whether to enable PolySharp to polyfill newer language features that do not require runtime support.",
-      "defaultValue": "false"
+    "safe-source-name": {
+      // I think it's really really cool that value forms of sourceName are not applied to file names by default
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "safe_name",
+      "fileRename": "SilksongPlugin__1"
     }
   },
   "postActions": [
