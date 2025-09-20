@@ -27,7 +27,7 @@ jobs:
     - name: Get Version
       id: version
       run: |-
-        VERSION = $(dotnet build Silksong.Modding.Templates.csproj -getProperty:Version)
+        VERSION=$(dotnet build Silksong.Modding.Templates.csproj -getProperty:Version)
         echo "version=$VERSION" >> $GITHUB_OUTPUT
     # attempts to publish to NuGet on any push to main. Skips already-published versions.
     - name: Publish NuGet
