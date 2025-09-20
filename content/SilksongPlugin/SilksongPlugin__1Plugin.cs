@@ -4,7 +4,7 @@ namespace SilksongPlugin._1;
 
 // TODO - adjust the plugin guid as needed
 [BepInAutoPlugin(id: "io.github.silksongplugin__1")]
-public partial class SilksongPlugin__1 : BaseUnityPlugin
+public partial class SilksongPlugin__1Plugin : BaseUnityPlugin
 {
     private void Awake()
     {
