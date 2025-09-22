@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>Silksong.Modding.Templates</PackageId>
-    <PackageVersion>1.2.2</PackageVersion>
+    <PackageVersion>1.2.3</PackageVersion>
     <Authors>BadMagic</Authors>
     <Description>Templates for creating mods for Hollow Knight: Silksong</Description>
     <PackageTags>silksong modding bepinex5</PackageTags>
