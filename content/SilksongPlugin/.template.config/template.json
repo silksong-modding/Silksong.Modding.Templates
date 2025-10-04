@@ -34,6 +34,10 @@
       "isRequired": true,
       "choices": [
         {
+          "choice": "1.0.28714",
+          "description": "Undocumented patch for all platforms. Contains the patch for CVE-2025-59489 on Windows and Mac. Released Sept 24 2025/patched Oct 3."
+        },
+        {
           "choice": "1.0.28650",
           "description": "Second real bugfix patch. Released Sept 22 2025."
         },
@@ -66,7 +70,7 @@
         "dataType": "string",
         "cases": [
           {
-            "condition": "game-version == '1.0.28324' || game-version == '1.0.28497' || game-version == '1.0.28561' || game-version == '1.0.28650'",
+            "condition": "game-version == '1.0.28324' || game-version == '1.0.28497' || game-version == '1.0.28561' || game-version == '1.0.28650' || game-version == '1.0.28714'",
             "value": "6000.0.50"
           }
         ]

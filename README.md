@@ -7,6 +7,6 @@ then run the following:
 > dotnet new silksongplugin -gv SilksongGameVersion
 ```
 
-As of Sept 22 2025, the latest Silksong version is `1.0.28650`.
+As of Oct 3 2025, the latest Silksong version is `1.0.28714`.
 
 Use `dotnet new silksongplugin --help` to see additional options.
