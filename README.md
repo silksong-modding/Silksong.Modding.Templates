@@ -1,5 +1,6 @@
-﻿Templates for modding Hollow Knight: Silksong. Usage: navigate to the folder you want to create a mod,
-then run the following:
+﻿Templates for modding Hollow Knight: Silksong. 
+
+Usage: navigate to the folder you want to create a mod, then run the following:
 
 ```
 > dotnet new install Silksong.Modding.Templates
