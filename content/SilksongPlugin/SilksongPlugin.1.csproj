@@ -44,13 +44,19 @@
       Condition="'$(SilksongFolder)' != '' And Exists('$(SilksongFolder)')"
     />
 
+    <ItemGroup>
+      <ArchiveContent Include="@(Binaries)"/>
+      <ArchiveContent Include="$(ProjectDir)/thunderstore/manifest.json"/>
+      <ArchiveContent Include="$(ProjectDir)/thunderstore/icon.png"/>
+      <ArchiveContent Include="$(ProjectDir)/README.md"/>
+    </ItemGroup>
     <PropertyGroup>
       <ExportFolder>bin/Publish</ExportFolder>
     </PropertyGroup>
 
     <RemoveDir Directories="$(IntermediateOutputPath)/archive"/>
     <MakeDir Directories="$(ExportFolder)"/>
-    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(IntermediateOutputPath)/archive"/>
+    <Copy SourceFiles="@(ArchiveContent)" DestinationFolder="$(IntermediateOutputPath)/archive"/>
     <ZipDirectory SourceDirectory="$(IntermediateOutputPath)/archive" DestinationFile="$(ExportFolder)/$(TargetName).zip" Overwrite="True"/>
   </Target>
 </Project>

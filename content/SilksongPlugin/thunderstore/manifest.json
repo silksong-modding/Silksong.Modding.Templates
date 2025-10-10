@@ -1,0 +1,14 @@
+{
+  // Uncomment and Github repository url works best here
+  //"website_url": "https://github.com/silksong-modding/SilksongPlugin.1",
+  // Safe name, allowed characters are A-Z, a-z, 0-9 and _
+  "name": "SilksongPlugin__1",
+  // Up to 250 characters of a description
+  "description": "A Hollow Knight: Silksong mod.",
+  // Same version as the csproj already has
+  "version_number": "0.1.0",
+  // All thunderstore mods this mod depends on, have at least bepinex here
+  "dependencies": [
+    "BepInEx-BepInExPack_Silksong-5.4.2304"
+  ]
+}
