@@ -15,8 +15,8 @@
     </RestoreAdditionalProjectSources>
     <!--Allow access of private members at runtime.-->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <!--Makes paths in the .pdb show up as `source/...` instead of potentially having usernames-->
-    <PathMap>$(MSBuildProjectDirectory)=source</PathMap>
+    <!--Shortens and anonymizes paths in debug symbols relative to the project directory. Breakpoints will not work, however.-->
+    <PathMap Condition="'$(Configuration)' == 'Release'">$(MSBuildProjectDirectory)=/</PathMap>
   </PropertyGroup>
 
   <PropertyGroup>
