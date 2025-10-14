@@ -6,7 +6,8 @@
     <Authors>BadMagic</Authors>
     <Description>Templates for creating mods for Hollow Knight: Silksong</Description>
     <PackageTags>silksong modding bepinex5</PackageTags>
-    <PackageProjectUrl>https://github.com/BadMagic100/Silksong.Modding.Templates</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/silksong-modding/Silksong.Modding.Templates</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/silksong-modding/Silksong.Modding.Templates</RepositoryUrl>
 
     <PackageType>Template</PackageType>
     <TargetFramework>net8.0</TargetFramework>
