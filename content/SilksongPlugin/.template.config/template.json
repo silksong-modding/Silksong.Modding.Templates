@@ -30,9 +30,17 @@
       "dataType": "choice",
       "replaces": "SilksongVersion",
       "displayName": "Game Version",
-      "description": "The version of Silksong being modded.",
-      "isRequired": true,
+      "description": "The version of Silksong being modded. Most mods should choose latest, but mods that are specifically targeting an older version can specify that version.",
+      "defaultValue": "latest",
       "choices": [
+        {
+          "choice": "latest",
+          "description": "Automatically target the latest version of the game."
+        },
+        {
+          "choice": "1.0.28891",
+          "description": "Bugfix and balance patch. Released Oct 13 2025."
+        },
         {
           "choice": "1.0.28714",
           "description": "Undocumented patch for all platforms. Contains the patch for CVE-2025-59489 on Windows and Mac. Released Sept 24 2025/patched Oct 3."
@@ -70,7 +78,12 @@
         "dataType": "string",
         "cases": [
           {
-            "condition": "game-version == '1.0.28324' || game-version == '1.0.28497' || game-version == '1.0.28561' || game-version == '1.0.28650' || game-version == '1.0.28714'",
+            "condition": "game-version == 'latest'",
+            "value": "6000.0.50"
+          },
+          {
+            // default case. We'll worry about newer unity versions as they happen
+            "condition": "",
             "value": "6000.0.50"
           }
         ]
