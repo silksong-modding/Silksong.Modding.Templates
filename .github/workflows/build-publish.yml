@@ -34,7 +34,7 @@ jobs:
     # attempts to publish to NuGet on any push to main. Skips already-published versions.
     - name: NuGet Login
       id: login
-      if: github.event_name == 'push'
+      # if: github.event_name == 'push'
       uses: Nuget/login@v1
       with:
         user: twelfth-architect
