@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   build:
@@ -31,12 +32,18 @@ jobs:
         echo Version is $VERSION
         echo "version=$VERSION" >> $GITHUB_OUTPUT
     # attempts to publish to NuGet on any push to main. Skips already-published versions.
+    - name: NuGet Login
+      id: login
+      if: github.event_name == 'push'
+      uses: NuGet/login@v1
+      with:
+        user: silksong-modding
     - name: Publish NuGet
       id: publish
       if: github.event_name == 'push'
       run: |-
         dotnet nuget push bin/Release/*.nupkg \
-          --api-key ${{ secrets.NUGET_TOKEN }} \
+          --api-key ${{ steps.login.outputs.NUGET_API_KEY }} \
           --source https://api.nuget.org/v3/index.json
       continue-on-error: true
     - name: Create Release
