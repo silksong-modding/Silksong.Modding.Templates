@@ -37,7 +37,7 @@ jobs:
       # if: github.event_name == 'push'
       uses: Nuget/login@v1
       with:
-        user: twelfth-architect
+        user: silksong-modding
     - name: Publish NuGet
       id: publish
       if: github.event_name == 'push'
