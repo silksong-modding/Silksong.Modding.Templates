@@ -1,4 +1,4 @@
-﻿Templates for modding Hollow Knight: Silksong. 
+Templates for modding Hollow Knight: Silksong. 
 
 Usage: navigate to the folder you want to create a mod, then run the following:
 

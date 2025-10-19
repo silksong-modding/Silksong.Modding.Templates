@@ -25,18 +25,23 @@
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-    <PackageReference Include="Hamunii.BepInEx.AutoPlugin" Version="2.0.1" PrivateAssets="all"/>
+    <PackageReference Include="HarmonyX" Version="2.9.0" />
+    <PackageReference Include="Hamunii.BepInEx.AutoPlugin" Version="2.0.1" PrivateAssets="all" />
     <PackageReference Include="UnityEngine.Modules" Version="UnityVersion" IncludeAssets="compile" />
     <!--If you're unable resolve this dependency, check that you're using the nuget v3 package feed instead of v2.-->
-    <PackageReference Include="Silksong.GameLibs" Version="*-*" PrivateAssets="all" Condition="'$(game-version)' == 'latest'"/>
-    <PackageReference Include="Silksong.GameLibs" Version="1.1.0-silksongSilksongVersion" PrivateAssets="all" Condition="'$(game-version)' != 'latest'"/>
+    <PackageReference Include="Silksong.GameLibs" Version="*-*" PrivateAssets="all" Condition="'$(game-version)' == 'latest'" />
+    <PackageReference Include="Silksong.GameLibs" Version="1.1.0-silksongSilksongVersion" PrivateAssets="all" Condition="'$(game-version)' != 'latest'" />
   </ItemGroup>
 
-  <Target Name="CopyMod" AfterTargets="PostBuildEvent">
+  <Target Name="CopyAndPackageMod" AfterTargets="PostBuildEvent">
     <ItemGroup>
       <Binaries Include="$(TargetPath)"/>
       <Binaries Include="$(TargetDir)/$(TargetName).pdb"/>
     </ItemGroup>
+
+    <PropertyGroup>
+      <ThunderstoreDir>$(ProjectDir)/thunderstore</ThunderstoreDir>
+    </PropertyGroup>
 
     <Copy
       SourceFiles="@(Binaries)"
@@ -44,13 +49,12 @@
       Condition="'$(SilksongFolder)' != '' And Exists('$(SilksongFolder)')"
     />
 
-    <PropertyGroup>
-      <ExportFolder>bin/Publish</ExportFolder>
-    </PropertyGroup>
+    <RemoveDir Directories="$(ThunderstoreDir)/tmp;$(ThunderstoreDir)/dist"/>
+    <MakeDir Directories="$(ThunderstoreDir)/tmp"/>
+    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(ThunderstoreDir)/tmp"/>
 
-    <RemoveDir Directories="$(IntermediateOutputPath)/archive"/>
-    <MakeDir Directories="$(ExportFolder)"/>
-    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(IntermediateOutputPath)/archive"/>
-    <ZipDirectory SourceDirectory="$(IntermediateOutputPath)/archive" DestinationFile="$(ExportFolder)/$(TargetName).zip" Overwrite="True"/>
+    <Exec Command="dotnet tool restore" />
+    <Exec Command="dotnet tcli build --config-path &quot;$(ThunderstoreDir)/thunderstore.toml&quot; --package-name &quot;$(AssemblyTitle)&quot; --package-version $(Version)"
+          StandardOutputImportance="High" StandardErrorImportance="High"/>
   </Target>
 </Project>

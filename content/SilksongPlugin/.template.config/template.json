@@ -17,6 +17,39 @@
     "type": "project"
   },
   "symbols": {
+    "username": {
+      "type": "parameter",
+      "datatype": "string",
+      "isRequired": true,
+      "replaces": "UserName",
+      "displayName": "GitHub Username",
+      "description": "Your GitHub username. Used to set the default plugin GUID and repo URLs. If you don't have a GitHub account any username will do but the pre-filled template values will be less applicable",
+      "forms": {
+        "global": [
+          "lc"
+        ]
+      }
+    },
+    "thunderstore-username": {
+      "type": "parameter",
+      "datatype": "string",
+      "displayName": "Thunderstore Username",
+      "description": "Your Thunderstore username. Used to set the default Thunderstore namespace. If not specified, defaults to GitHub username."
+    },
+    "ts-or-gh-username": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "thunderstore-username",
+        "fallbackVariableName": "username"
+      },
+      "replaces": "ThunderstoreUserName",
+      "forms": {
+        "global": [
+          "lc"
+        ]
+      }
+    },
     "silksong-install-path": {
       "type": "parameter",
       "datatype": "string",
@@ -95,6 +128,11 @@
       "valueSource": "name",
       "valueTransform": "safe_name",
       "fileRename": "SilksongPlugin__1"
+    }
+  },
+  "forms": {
+    "lc": {
+      "identifier": "lowerCase"
     }
   },
   "postActions": [
