@@ -15,11 +15,19 @@
     </RestoreAdditionalProjectSources>
     <!-- Ignore warning about processor architecture mismatch with PlayMaker ConditionalExpression -->
     <NoWarn>$(NoWarn);MSB3270</NoWarn>
-    <RestorePackagesWithLockFile Condition="'$(game-version)' == 'latest'">True</RestorePackagesWithLockFile>
+<!--#if (game-version == 'latest') -->
+    <RestorePackagesWithLockFile>True</RestorePackagesWithLockFile>
+    <!-- CI environment variable is automatically set by GitHub actions -->
+    <RestoreLockedMode Condition="'$(CI)' == 'true'">True</RestoreLockedMode>
+<!--#endif -->
     <!--Allow access of private members at runtime.-->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <!--Shortens and anonymizes paths in debug symbols relative to the project directory. Breakpoints will not work, however.-->
     <PathMap Condition="'$(Configuration)' == 'Release'">$(MSBuildProjectDirectory)=/</PathMap>
+
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/UserName/SilksongPlugin__1</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,10 +41,16 @@
     <PackageReference Include="Silksong.GameLibs" Version="1.1.0-silksongSilksongVersion" PrivateAssets="all" Condition="'$(game-version)' != 'latest'" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Remove="thunderstore/tmp;thunderstore/dist"/>
+    <None Include="README.md" Pack="True" PackagePath="README.md"/>
+    <None Include="thunderstore/icon.png" Pack="True" PackagePath="icon.png"/>
+  </ItemGroup>
+
   <Target Name="CopyAndPackageMod" AfterTargets="PostBuildEvent">
     <ItemGroup>
-      <Binaries Include="$(TargetPath)"/>
-      <Binaries Include="$(TargetDir)/$(TargetName).pdb"/>
+      <Binaries Include="$(TargetPath)" />
+      <Binaries Include="$(TargetDir)/$(TargetName).pdb" />
     </ItemGroup>
 
     <PropertyGroup>

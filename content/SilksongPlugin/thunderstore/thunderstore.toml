@@ -1,7 +1,4 @@
-﻿[config]
-schemaVersion = "0.0.1"
-
-[package]
+﻿[package]
 # The name of the team you are publishing as
 namespace = "ThunderstoreUserName"
 # max 250 characters
@@ -11,19 +8,10 @@ description = "Example mod description"
 websiteUrl = "https://github.com/UserName/SilksongPlugin__1"
 containsNsfwContent = false
 
+
 # dependencies are specified in the format AuthorName-PackageName = "version". You should always have at least BepInExPack_Silksong.
 [package.dependencies]
 BepInEx-BepInExPack_Silksong = "5.4.2304"
-
-
-[build]
-icon = "./icon.png"
-readme = "../README.md"
-outdir = "./dist"
-
-[[build.copy]]
-source = "./tmp"
-target = ""
 
 
 [publish]
@@ -33,3 +21,18 @@ communities = [ "hollow-knight-silksong" ]
 [publish.categories]
 # available categories can be found at https://github.com/thunderstore-io/ecosystem-schema/blob/master/games/data/hollow-knight-silksong.yml
 hollow-knight-silksong = [ "mods" ]
+
+
+# you generally should not need to change anything below this line
+
+[config]
+schemaVersion = "0.0.1"
+
+[build]
+icon = "./icon.png"
+readme = "../README.md"
+outdir = "./dist"
+
+[[build.copy]]
+source = "./tmp"
+target = ""
