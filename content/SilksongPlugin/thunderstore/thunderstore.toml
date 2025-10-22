@@ -11,11 +11,14 @@ description = "Example mod description"
 websiteUrl = "https://github.com/UserName/SilksongPlugin__1"
 containsNsfwContent = false
 
+
 # dependencies are specified in the format AuthorName-PackageName = "version". You should always have at least BepInExPack_Silksong.
 [package.dependencies]
 BepInEx-BepInExPack_Silksong = "5.4.2304"
 
 
+# in most cases you should not change this build block, or the first build.copy block; the dist and tmp directories are used
+# by other build scripts
 [build]
 icon = "./icon.png"
 readme = "../README.md"
@@ -23,7 +26,12 @@ outdir = "./dist"
 
 [[build.copy]]
 source = "./tmp"
-target = ""
+target = "/"
+
+# additional files and directories can be added to the package like this:
+# [[build.copy]]
+# source = "./CHANGELOG.md"
+# target = "/"
 
 
 [publish]

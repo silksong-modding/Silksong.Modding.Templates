@@ -1,3 +1,3 @@
-﻿# SilksongPlugin.1
+# SilksongPlugin.1
 
 A Hollow Knight: Silksong mod.
