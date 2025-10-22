@@ -8,7 +8,7 @@ namespace = "ThunderstoreUserName"
 description = "Example mod description"
 
 # Replace this with a correct repo URL if the default is not accurate
-websiteUrl = "https://github.com/UserName/SilksongPlugin__1"
+websiteUrl = "https://github.com/UserName/SilksongPlugin.1"
 containsNsfwContent = false
 
 

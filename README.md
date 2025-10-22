@@ -35,7 +35,7 @@ There are a few scenarios where the template makes a best guess. The following t
 in some scenarios:
 
 - `website_url` in thunderstore.toml and `RepositoryUrl` in the .csproj assume that you are using GitHub and that the
-  repository name is the safe class name of your project. If either is not the case, you will have to update these URLs.
+  repository name is the name of your project. If either is not the case, you will have to update these URLs.
 - Most metadata contained in thunderstore.toml is placeholder. You will have to update it before publishing your mod.
 - The Thunderstore icon should minimally be updated to contain your mod name; there is space available for top/bottom text.
   Of course, you can also replace it with any .png of the same size.
