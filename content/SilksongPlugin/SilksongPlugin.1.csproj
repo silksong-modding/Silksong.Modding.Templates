@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <!-- 
   Imports silksong path properties only if present in order to allow CI builds. The file should be gitignored.
   If you are checking out from git and need to create a new one, you can use `dotnet new silksongpath` to generate one.
   -->
   <Import Condition="Exists('SilksongPath.props')" Project="SilksongPath.props" />
-
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
@@ -15,61 +13,70 @@
     </RestoreAdditionalProjectSources>
     <!-- Ignore warning about processor architecture mismatch with PlayMaker ConditionalExpression -->
     <NoWarn>$(NoWarn);MSB3270</NoWarn>
-<!--#if (game-version == 'latest') -->
+    <!--#if (game-version == 'latest') -->
     <RestorePackagesWithLockFile>True</RestorePackagesWithLockFile>
     <!-- CI environment variable is automatically set by GitHub actions -->
     <RestoreLockedMode Condition="'$(CI)' == 'true'">True</RestoreLockedMode>
-<!--#endif -->
+    <!--#endif -->
     <!--Allow access of private members at runtime.-->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <!--Shortens and anonymizes paths in debug symbols relative to the project directory. Breakpoints will not work, however.-->
     <PathMap Condition="'$(Configuration)' == 'Release'">$(MSBuildProjectDirectory)=/</PathMap>
-
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/UserName/SilksongPlugin__1</RepositoryUrl>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
     <PackageReference Include="HarmonyX" Version="2.9.0" />
     <PackageReference Include="Hamunii.BepInEx.AutoPlugin" Version="2.0.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Unity.Analyzers" Version="1.25.0" PrivateAssets="all" />
-    <PackageReference Include="UnityEngine.Modules" Version="UnityVersion" IncludeAssets="compile" />
+    <PackageReference
+      Include="UnityEngine.Modules"
+      Version="UnityVersion"
+      IncludeAssets="compile"
+    />
     <!--If you're unable resolve this dependency, check that you're using the nuget v3 package feed instead of v2.-->
-    <PackageReference Include="Silksong.GameLibs" Version="*-*" PrivateAssets="all" Condition="'$(game-version)' == 'latest'" />
-    <PackageReference Include="Silksong.GameLibs" Version="1.1.0-silksongSilksongVersion" PrivateAssets="all" Condition="'$(game-version)' != 'latest'" />
+    <PackageReference
+      Include="Silksong.GameLibs"
+      Version="*-*"
+      PrivateAssets="all"
+      Condition="'$(game-version)' == 'latest'"
+    />
+    <PackageReference
+      Include="Silksong.GameLibs"
+      Version="1.1.0-silksongSilksongVersion"
+      PrivateAssets="all"
+      Condition="'$(game-version)' != 'latest'"
+    />
   </ItemGroup>
-
   <ItemGroup>
-    <Folder Remove="thunderstore/tmp;thunderstore/dist"/>
-    <None Include="README.md" Pack="True" PackagePath="README.md"/>
-    <None Include="thunderstore/icon.png" Pack="True" PackagePath="icon.png"/>
+    <Folder Remove="thunderstore/tmp;thunderstore/dist" />
+    <None Include="README.md" Pack="True" PackagePath="README.md" />
+    <None Include="thunderstore/icon.png" Pack="True" PackagePath="icon.png" />
   </ItemGroup>
-
   <Target Name="CopyAndPackageMod" AfterTargets="PostBuildEvent">
     <ItemGroup>
       <Binaries Include="$(TargetPath)" />
       <Binaries Include="$(TargetDir)/$(TargetName).pdb" />
     </ItemGroup>
-
     <PropertyGroup>
       <ThunderstoreDir>$(ProjectDir)/thunderstore</ThunderstoreDir>
     </PropertyGroup>
-
     <Copy
       SourceFiles="@(Binaries)"
       DestinationFolder="$(SilksongFolder)/BepInEx/plugins/$(TargetName)"
       Condition="'$(SilksongFolder)' != '' And Exists('$(SilksongFolder)')"
     />
-
-    <RemoveDir Directories="$(ThunderstoreDir)/tmp;$(ThunderstoreDir)/dist"/>
-    <MakeDir Directories="$(ThunderstoreDir)/tmp"/>
-    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(ThunderstoreDir)/tmp"/>
-
+    <RemoveDir Directories="$(ThunderstoreDir)/tmp;$(ThunderstoreDir)/dist" />
+    <MakeDir Directories="$(ThunderstoreDir)/tmp" />
+    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(ThunderstoreDir)/tmp" />
     <Exec Command="dotnet tool restore" />
-    <Exec Command="dotnet tcli build --config-path &quot;$(ThunderstoreDir)/thunderstore.toml&quot; --package-name &quot;$(AssemblyTitle)&quot; --package-version $(Version)"
-          StandardOutputImportance="High" StandardErrorImportance="High"/>
+    <Exec
+      Command="dotnet tcli build --config-path &quot;$(ThunderstoreDir)/thunderstore.toml&quot; --package-name &quot;$(AssemblyTitle)&quot; --package-version $(Version)"
+      StandardOutputImportance="High"
+      StandardErrorImportance="High"
+    />
   </Target>
 </Project>

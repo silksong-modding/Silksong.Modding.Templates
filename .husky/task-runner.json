@@ -1,0 +1,16 @@
+{
+  "$schema": "https://alirezanet.github.io/Husky.Net/schema.json",
+  "tasks": [
+    {
+      "name": "Format and build",
+      "command": "dotnet",
+      "group": "pre-commit",
+      "args": [ "build" ]
+    },
+    {
+      "name": "Refresh index",
+      "command": "git",
+      "args": [ "update-index", "--again" ]
+    }
+  ]
+}
