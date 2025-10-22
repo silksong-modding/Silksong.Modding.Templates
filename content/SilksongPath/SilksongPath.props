@@ -1,5 +1,5 @@
 <Project>
-    <PropertyGroup>
-        <SilksongFolder>SilksongInstallPath</SilksongFolder>
-    </PropertyGroup>
+  <PropertyGroup>
+    <SilksongFolder>SilksongInstallPath</SilksongFolder>
+  </PropertyGroup>
 </Project>

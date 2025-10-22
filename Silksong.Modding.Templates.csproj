@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <PackageId>Silksong.Modding.Templates</PackageId>
     <PackageVersion>2.0.0-alpha.1</PackageVersion>
@@ -8,7 +7,6 @@
     <PackageTags>silksong modding bepinex5</PackageTags>
     <PackageProjectUrl>https://github.com/silksong-modding/Silksong.Modding.Templates</PackageProjectUrl>
     <RepositoryUrl>https://github.com/silksong-modding/Silksong.Modding.Templates</RepositoryUrl>
-
     <PackageType>Template</PackageType>
     <TargetFramework>net8.0</TargetFramework>
     <IncludeContentInPack>True</IncludeContentInPack>
@@ -20,22 +18,37 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <PropertyGroup>
     <LocalizeTemplates>false</LocalizeTemplates>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.TemplateEngine.Authoring.Tasks" Version="8.0.414" PrivateAssets="all" IsImplicitlyDefined="True" />
+    <PackageReference
+      Include="Microsoft.TemplateEngine.Authoring.Tasks"
+      Version="8.0.414"
+      PrivateAssets="all"
+      IsImplicitlyDefined="True"
+    />
+    <!-- CSharpier.MsBuild automatically formats code during Debug builds. Run 'dotnet build' to format all files. -->
+    <PackageReference Include="CSharpier.MsBuild" Version="1.1.2" />
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="content\**\*" />
     <Compile Remove="**\*" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="README.md" />
   </ItemGroup>
-
+  <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0">
+    <Exec
+      Command="dotnet tool restore"
+      StandardOutputImportance="Low"
+      StandardErrorImportance="High"
+    />
+    <Exec
+      Command="dotnet husky install"
+      StandardOutputImportance="Low"
+      StandardErrorImportance="High"
+      WorkingDirectory="."
+    />
+  </Target>
 </Project>
