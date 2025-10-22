@@ -98,11 +98,28 @@ so that consumers can use it in workflows like this one. In order to publish to 
 
 ## Publishing manually
 
-If you want to publish an already-published version of your mod to Thunderstore or NuGet (for example, if you forgot to
-set up API keys before making your first release), you will have to do so manually. Fortunately this is easy to do; the build
-workflow can serve as a reference for the steps you need to do.
+When using this template, automated publishing via GitHub Actions should be preferred in most cases. Some reasons that might
+warrant manual publishing include:
+
+- Publishing to GitHub releases succeeded, but Thunderstore and/or NuGet failed, such as if you forgot to set API keys 
+  before enabling your first release
+- You aren't using GitHub to host your repository
+
+There are 2 ways to manually publish; using a workflow dispatch or via a terminal.
+
+### Manually publishing via workflow dispatch
+
+The workflow comes pre-configured with a workflow dispatch trigger that can forcibly re-publish to Thunderstore and/or
+NuGet. To do this, navigate to your repository's Actions tab and open the page for the Build workflow. Then, click the
+"Run workflow" dropdown and select the destinations you want to republish to. You will still need to configure API keys
+(as described above) for publishing to succeed.
+
+### Manually publishing via a terminal
+
+The build workflow can serve as a reference for the steps you need to do.
 
 - `dotnet build` will build your mod and create a Thunderstore package in `thunderstore/dist`
 - `dotnet pack -o nuget` will create a NuGet package in the `nuget` directory
 
-These output files can either be uploaded manually, or using the same CLI commands used in the publish jobs.
+Once these artifacts are created, you can upload them either by using the respective websites' upload functionality,
+or you can use the same CLI commands used in the publish jobs.

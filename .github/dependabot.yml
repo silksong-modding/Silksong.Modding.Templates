@@ -14,7 +14,9 @@ updates:
   - directory: /content/
     package-ecosystem: nuget
     ignore:
+      - dependency-name: BepInEx.Core
       - dependency-name: HarmonyX
+      - dependency-name: UnityEngine.Modules
     schedule:
       interval: daily
   - directory: /content/

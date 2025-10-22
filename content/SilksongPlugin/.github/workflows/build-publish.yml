@@ -5,6 +5,18 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      force_thunderstore:
+        description: Force re-publishing to Thunderstore
+        required: true
+        default: false
+        type: boolean
+      force_nuget:
+        description: Force re-publishing to NuGet
+        required: true
+        default: false
+        type: boolean
     
 permissions:
   contents: write
@@ -67,7 +79,16 @@ jobs:
     needs:
       - build
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && needs.build.outputs.allow-release == 'true' && needs.build.outputs.is-new-version == 'true'
+    if: |
+      (
+        github.event_name == 'push' &&
+        needs.build.outputs.allow-release == 'true' &&
+        needs.build.outputs.is-new-version == 'true'
+      ) ||
+      (
+        github.event_name == 'workflow_dispatch' &&
+        github.event.inputs.force_thunderstore == 'true'
+      )
     # Do not substitute your Thunderstore API key in this workflow! Instead, add a secret to your repository.
     # https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets
     env:
@@ -99,7 +120,16 @@ jobs:
     needs:
       - build
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && needs.build.outputs.allow-release == 'true' && needs.build.outputs.is-new-version == 'true'
+    if: |
+      (
+        github.event_name == 'push' && 
+        needs.build.outputs.allow-release == 'true' && 
+        needs.build.outputs.is-new-version == 'true'
+      ) ||
+      (
+        github.event_name == 'workflow_dispatch' &&
+        github.event.inputs.force_nuget == 'true'
+      )
     # Do not substitute your NuGet API key in this workflow! Instead, add a secret to your repository
     # https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets
     env:

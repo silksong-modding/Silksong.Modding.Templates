@@ -1,4 +1,7 @@
-﻿[package]
+﻿[config]
+schemaVersion = "0.0.1"
+
+[package]
 # The name of the team you are publishing as
 namespace = "ThunderstoreUserName"
 # max 250 characters
@@ -14,20 +17,8 @@ containsNsfwContent = false
 BepInEx-BepInExPack_Silksong = "5.4.2304"
 
 
-[publish]
-repository = "https://thunderstore.io"
-communities = [ "hollow-knight-silksong" ]
-
-[publish.categories]
-# available categories can be found at https://github.com/thunderstore-io/ecosystem-schema/blob/master/games/data/hollow-knight-silksong.yml
-hollow-knight-silksong = [ "mods" ]
-
-
-# you generally should not need to change anything below this line
-
-[config]
-schemaVersion = "0.0.1"
-
+# in most cases you should not change this build block, or the first build.copy block; the dist and tmp directories are used
+# by other build scripts
 [build]
 icon = "./icon.png"
 readme = "../README.md"
@@ -35,4 +26,18 @@ outdir = "./dist"
 
 [[build.copy]]
 source = "./tmp"
-target = ""
+target = "/"
+
+# additional files and directories can be added to the package like this:
+# [[build.copy]]
+# source = "./CHANGELOG.md"
+# target = "/"
+
+
+[publish]
+repository = "https://thunderstore.io"
+communities = [ "hollow-knight-silksong" ]
+
+[publish.categories]
+# available categories can be found at https://github.com/thunderstore-io/ecosystem-schema/blob/master/games/data/hollow-knight-silksong.yml
+hollow-knight-silksong = [ "mods" ]
