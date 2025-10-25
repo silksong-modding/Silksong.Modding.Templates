@@ -5,11 +5,11 @@
   "identity": "Silksong.Modding.Plugin",
   "name": "Silksong Modding Plugin",
   "shortName": "silksongplugin",
-  "sourceName": "SilksongPlugin.1",
+  "sourceName": "Silksong.Plugin.1",
   "defaultName": "SilksongMod1",
   "primaryOutputs": [
     {
-      "path": "SilksongPlugin.1.csproj"
+      "path": "Silksong.Plugin.1.csproj"
     }
   ],
   "tags": {
@@ -122,17 +122,57 @@
         ]
       }
     },
-    "safe-source-name": {
-      // I think it's really really cool that value forms of sourceName are not applied to file names by default
+    "stripped-class-name": {
       "type": "derived",
       "valueSource": "name",
-      "valueTransform": "safe_name",
-      "fileRename": "SilksongPlugin__1"
+      "valueTransform": "stripped_class",
+      "replaces": "Plugin__1",
+      // I think it's really really cool that value forms of sourceName are not applied to file names by default
+      "fileRename": "Plugin__1"
+    },
+    "stripped-namespace-name": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "stripped_namespace",
+      "replaces": "Plugin._1"
+    },
+    "stripped-lower-class-name": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "stripped_lower_class",
+      "replaces": "plugin__1"
+    },
+    "stripped-lower-namespace-name": {
+      "type": "derived",
+      "valueSource": "name",
+      "valueTransform": "stripped_lower_namespace",
+      "replaces": "plugin._1"
     }
   },
   "forms": {
     "lc": {
       "identifier": "lowerCase"
+    },
+    "strip_silksong_prefix": {
+      "identifier": "replace",
+      "pattern": "(S|s)ilk(S|s)ong\\.?(.*)",
+      "replacement": "$3"
+    },
+    "stripped_class": {
+      "identifier": "chain",
+      "steps": [ "strip_silksong_prefix", "safe_name" ]
+    },
+    "stripped_namespace": {
+      "identifier": "chain",
+      "steps": [ "strip_silksong_prefix", "safe_namespace" ]
+    },
+    "stripped_lower_class": {
+      "identifier": "chain",
+      "steps": [ "strip_silksong_prefix", "lower_safe_name" ]
+    },
+    "stripped_lower_namespace": {
+      "identifier": "chain",
+      "steps": [ "strip_silksong_prefix", "lower_safe_namespace" ]
     }
   },
   "postActions": [
