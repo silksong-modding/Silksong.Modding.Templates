@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>Silksong.Modding.Templates</PackageId>
-    <PackageVersion>2.0.0-alpha.2</PackageVersion>
+    <PackageVersion>2.0.0-alpha.3</PackageVersion>
     <Authors>BadMagic</Authors>
     <Description>Templates for creating mods for Hollow Knight: Silksong</Description>
     <PackageTags>silksong modding bepinex5</PackageTags>
