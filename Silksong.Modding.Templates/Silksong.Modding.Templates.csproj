@@ -32,11 +32,11 @@
     <PackageReference Include="CSharpier.MsBuild" Version="1.1.2" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="content\**\*" />
-    <Compile Remove="**\*" />
+    <Content Include="content/**/*" />
+    <Compile Remove="**/*" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="README.md" />
+    <None Include="../README.md" Pack="true" PackagePath="README.md" />
   </ItemGroup>
   <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0">
     <Exec
@@ -48,7 +48,7 @@
       Command="dotnet husky install"
       StandardOutputImportance="Low"
       StandardErrorImportance="High"
-      WorkingDirectory="."
+      WorkingDirectory=".."
     />
   </Target>
 </Project>
