@@ -8,6 +8,12 @@
       "args": [ "build" ]
     },
     {
+      "name": "Test",
+      "command": "dotnet",
+      "group": "pre-commit",
+      "args": [ "test" ]
+    },
+    {
       "name": "Refresh index",
       "command": "git",
       "args": [ "update-index", "--again" ]
