@@ -10,9 +10,6 @@
     <Nullable>enable</Nullable>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <AnalysisMode>recommended</AnalysisMode>
-    <RestoreAdditionalProjectSources>
-      https://nuget.bepinex.dev/v3/index.json
-    </RestoreAdditionalProjectSources>
     <!-- Ignore warning about processor architecture mismatch with PlayMaker ConditionalExpression -->
     <NoWarn>$(NoWarn);MSB3270</NoWarn>
     <!--#if (game-version == 'latest') -->
@@ -68,7 +65,7 @@
     </PropertyGroup>
     <Copy
       SourceFiles="@(Binaries)"
-      DestinationFolder="$(SilksongFolder)/BepInEx/plugins/$(TargetName)"
+      DestinationFolder="$(SilksongFolder)/BepInEx/plugins/ThunderstoreUserName-$(AssemblyTitle)"
       Condition="'$(SilksongFolder)' != '' And Exists('$(SilksongFolder)')"
     />
     <RemoveDir Directories="$(ThunderstoreDir)/tmp;$(ThunderstoreDir)/dist" />

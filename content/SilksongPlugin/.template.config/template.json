@@ -56,7 +56,7 @@
       "defaultValue": "C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight Silksong",
       "replaces": "SilksongInstallPath",
       "displayName": "Silksong Install Path",
-      "description": "The installation path of Silksong"
+      "description": "The installation path of Silksong. This is currently only used to automatically install your mod after building, so if you did not manually install BepInEx, you should set it to a profile directory for your mod manager instead."
     },
     "game-version": {
       "type": "parameter",
@@ -155,7 +155,7 @@
     },
     "strip_silksong_prefix": {
       "identifier": "replace",
-      "pattern": "(S|s)ilk(S|s)ong\\.?(.*)",
+      "pattern": "(S|s)ilk(S|s)ong[.-](.*)",
       "replacement": "$3"
     },
     "stripped_class": {

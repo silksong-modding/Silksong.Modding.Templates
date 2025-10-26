@@ -1,5 +1,6 @@
 <Project>
-    <PropertyGroup>
-        <SilksongFolder>SilksongInstallPath</SilksongFolder>
-    </PropertyGroup>
+  <PropertyGroup>
+    <!-- If you use a mod manager rather than manually installing BepInEx, this should be a profile directory for that mod manager. -->
+    <SilksongFolder>SilksongInstallPath</SilksongFolder>
+  </PropertyGroup>
 </Project>
