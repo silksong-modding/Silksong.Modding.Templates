@@ -1,19 +1,14 @@
 ﻿using Xunit.Abstractions;
 
-namespace Silksong.Modding.Templates.Tests;
+namespace Silksong.Modding.Templates.Tests.ScenarioModel;
 
-public class ProjectTemplateScenario(
-    string name,
-    IEnumerable<string> args,
-    string? nameOverride = null
-) : IXunitSerializable
+public class TemplateScenario(string name, IEnumerable<string> args) : IXunitSerializable
 {
     public string ScenarioName { get; private set; } = name;
-    public IEnumerable<string> Args { get; private set; } =
-    ["--name", nameOverride ?? "SilksongTemplateTester", .. args];
+    public IEnumerable<string> Args { get; private set; } = args;
 
     [Obsolete("For serialization use only")]
-    public ProjectTemplateScenario()
+    public TemplateScenario()
         : this("", []) { }
 
     public void Deserialize(IXunitSerializationInfo info)
