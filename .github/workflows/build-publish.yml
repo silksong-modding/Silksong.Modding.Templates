@@ -28,7 +28,7 @@ jobs:
     - name: Get Version
       id: version
       run: |-
-        VERSION=$(dotnet build Silksong.Modding.Templates.csproj -getProperty:PackageVersion)
+        VERSION=$(dotnet build Silksong.Modding.Templates/Silksong.Modding.Templates.csproj -getProperty:PackageVersion)
         echo Version is $VERSION
         echo "version=$VERSION" >> $GITHUB_OUTPUT
     # attempts to publish to NuGet on any push to main. Skips already-published versions.
@@ -42,7 +42,7 @@ jobs:
       id: publish
       if: github.event_name == 'push'
       run: |-
-        dotnet nuget push bin/Release/*.nupkg \
+        dotnet nuget push Silksong.Modding.Templates/bin/Release/*.nupkg \
           --api-key ${{ steps.login.outputs.NUGET_API_KEY }} \
           --source https://api.nuget.org/v3/index.json
       continue-on-error: true
