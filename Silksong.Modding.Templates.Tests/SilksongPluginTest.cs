@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.TemplateEngine.Authoring.TemplateVerifier;
+using Silksong.Modding.Templates.Tests.ScenarioModel;
 using Xunit.Abstractions;
 
 namespace Silksong.Modding.Templates.Tests;
@@ -10,7 +11,7 @@ public class SilksongPluginTest(ITestOutputHelper output)
 
     [Theory]
     [MemberData(nameof(Data))]
-    public async Task SnapshotTest(ProjectTemplateScenario scenario)
+    public async Task SnapshotTest(NamedTemplateScenario scenario)
     {
         TemplateVerifierOptions options = new(templateName: "silksongplugin")
         {
@@ -30,17 +31,22 @@ public class SilksongPluginTest(ITestOutputHelper output)
         await engine.Execute(options);
     }
 
-    public static TheoryData<ProjectTemplateScenario> Data =>
+    public static TheoryData<NamedTemplateScenario> Data =>
         [
-            new ProjectTemplateScenario("Minimal", ["--username", "MyUsername"]),
-            new ProjectTemplateScenario(
+            new NamedTemplateScenario(
+                "Minimal",
+                "SilksongTemplateTester",
+                ["--username", "MyUsername"]
+            ),
+            new NamedTemplateScenario(
                 "ThunderstoreOverride",
+                "SilksongTemplateTester",
                 ["--username", "MyUsername", "--thunderstore-username", "my_username"]
             ),
-            new ProjectTemplateScenario(
+            new NamedTemplateScenario(
                 "StrippedName",
-                ["--username", "MyUsername"],
-                nameOverride: "Silksong.TemplateTester"
+                "Silksong.TemplateTester",
+                ["--username", "MyUsername"]
             ),
         ];
 }
