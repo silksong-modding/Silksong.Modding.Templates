@@ -46,16 +46,16 @@ jobs:
     - name: Get Version
       id: version
       run: |-
-        VERSION=$(dotnet build SilksongPlugin.1.csproj -getProperty:Version)
+        VERSION=$(dotnet build Silksong.Plugin.1.csproj -getProperty:Version)
         echo Version is $VERSION
         echo "version=$VERSION" >> $GITHUB_OUTPUT
     - name: Upload thunderstore artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: mod-bundle
         path: thunderstore/dist
     - name: Upload nuget artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: nuget
         path: nuget/
@@ -103,7 +103,7 @@ jobs:
     - name: Restore tools
       run: dotnet tool restore
     - name: Download artifact
-      uses: actions/download-artifact@v5
+      uses: actions/download-artifact@v6
       with:
         name: mod-bundle
         path: thunderstore/dist
@@ -141,7 +141,7 @@ jobs:
       with:
         dotnet-version: 9.x
     - name: Download artifact
-      uses: actions/download-artifact@v5
+      uses: actions/download-artifact@v6
       with:
         name: nuget
         path: nuget/
@@ -153,7 +153,7 @@ jobs:
           --source https://api.nuget.org/v3/index.json
 
   # Publish to GitHub releases to keep release history on the repository (needed for this workflow to work properly
-  # but is also nice for multiple other reasons)
+  # but is also nice for multiple other reasons such as auto-tagging *after* a build success)
   release-github:
     needs:
       - build
@@ -162,7 +162,7 @@ jobs:
 
     steps:
     - name: Download artifact
-      uses: actions/download-artifact@v5
+      uses: actions/download-artifact@v6
       with:
         name: mod-bundle
         path: thunderstore/dist
