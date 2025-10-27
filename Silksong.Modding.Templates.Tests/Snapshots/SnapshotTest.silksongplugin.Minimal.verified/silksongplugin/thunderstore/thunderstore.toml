@@ -25,7 +25,7 @@ readme = "../README.md"
 outdir = "./dist"
 
 [[build.copy]]
-source = "./tmp"
+source = "./temp"
 target = "/"
 
 # additional files and directories can be added to the package like this:

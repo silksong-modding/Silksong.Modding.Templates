@@ -42,7 +42,7 @@
     />
   </ItemGroup>
   <ItemGroup>
-    <Folder Remove="thunderstore/tmp;thunderstore/dist" />
+    <Folder Remove="thunderstore/temp;thunderstore/dist" />
     <None Include="README.md" Pack="True" PackagePath="README.md" />
     <None Include="thunderstore/icon.png" Pack="True" PackagePath="icon.png" />
   </ItemGroup>
@@ -59,9 +59,9 @@
       DestinationFolder="$(SilksongFolder)/BepInEx/plugins/my_username-$(AssemblyTitle)"
       Condition="'$(SilksongFolder)' != '' And Exists('$(SilksongFolder)')"
     />
-    <RemoveDir Directories="$(ThunderstoreDir)/tmp;$(ThunderstoreDir)/dist" />
-    <MakeDir Directories="$(ThunderstoreDir)/tmp" />
-    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(ThunderstoreDir)/tmp" />
+    <RemoveDir Directories="$(ThunderstoreDir)/temp;$(ThunderstoreDir)/dist" />
+    <MakeDir Directories="$(ThunderstoreDir)/temp" />
+    <Copy SourceFiles="@(Binaries)" DestinationFolder="$(ThunderstoreDir)/temp" />
     <Exec Command="dotnet tool restore" />
     <Exec
       Command="dotnet tcli build --config-path &quot;$(ThunderstoreDir)/thunderstore.toml&quot; --package-name &quot;$(AssemblyTitle)&quot; --package-version $(Version)"
