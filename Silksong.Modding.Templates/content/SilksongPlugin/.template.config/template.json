@@ -147,6 +147,12 @@
       "valueSource": "name",
       "valueTransform": "stripped_lower_namespace",
       "replaces": "plugin._1"
+    },
+    "gitignore-rename": {
+      "type": "generated",
+      "generator": "constant",
+      "parameters": { "value": ".gitignore" },
+      "fileRename": ".gitignore.template"
     }
   },
   "forms": {
