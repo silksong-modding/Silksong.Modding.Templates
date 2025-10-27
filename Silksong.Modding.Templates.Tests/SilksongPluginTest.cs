@@ -28,9 +28,9 @@ public class SilksongPluginTest(ITestOutputHelper output)
             ),
         }.WithCustomScrubbers(
             // on Linux, the `thunderstore/tmp` path is erroneously replaced with `thunderstore{TempPath}` with disastrous consequences
-            // https://github.com/silksong-modding/Silksong.Modding.Templates/actions/runs/18831278154/job/53723055893?pr=46
+            // https://github.com/silksong-modding/Silksong.Modding.Templates/actions/runs/18831278154/job/53723055893
             ScrubbersDefinition
-                .Empty.AddScrubber(sb => sb.Replace("thunderstore{TempPath}", "/tmp"), "csproj")
+                .Empty.AddScrubber(sb => sb.Replace("thunderstore{TempPath}", "/tmp"))
                 .AddScrubber(
                     (path, content) =>
                     {
