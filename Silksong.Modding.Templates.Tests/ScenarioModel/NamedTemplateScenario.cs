@@ -1,7 +1,7 @@
 ﻿namespace Silksong.Modding.Templates.Tests.ScenarioModel;
 
 public class NamedTemplateScenario(string scenarioName, string inputName, IEnumerable<string> args)
-    : TemplateScenario(scenarioName, ["--name", inputName, .. args])
+    : TemplateScenario(scenarioName, ["--name", inputName, .. args, "--verbosity", "diag"])
 {
     [Obsolete("For serialization use only")]
     public NamedTemplateScenario()
