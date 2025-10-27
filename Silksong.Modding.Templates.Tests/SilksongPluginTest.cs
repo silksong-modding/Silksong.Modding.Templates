@@ -13,7 +13,9 @@ public class SilksongPluginTest(ITestOutputHelper output)
     [MemberData(nameof(Data))]
     public async Task SnapshotTest(NamedTemplateScenario scenario)
     {
-        TemplateVerifierOptions options = new(templateName: "silksongplugin")
+        TemplateVerifierOptions options = new TemplateVerifierOptions(
+            templateName: "silksongplugin"
+        )
         {
             TemplatePath = Path.Combine(PathHelper.TemplateContentDir, "SilksongPlugin"),
             TemplateSpecificArgs = scenario.Args,
@@ -24,7 +26,21 @@ public class SilksongPluginTest(ITestOutputHelper output)
                 "packages.lock.json",
                 "thunderstore/icon.png"
             ),
-        };
+        }.WithCustomScrubbers(
+            // on Linux, the `thunderstore/tmp` path is erroneously replaced with `thunderstore{TempPath}` with disastrous consequences
+            // https://github.com/silksong-modding/Silksong.Modding.Templates/actions/runs/18831278154/job/53723055893?pr=46
+            ScrubbersDefinition
+                .Empty.AddScrubber(sb => sb.Replace("thunderstore{TempPath}", "/tmp"), "csproj")
+                .AddScrubber(
+                    (path, content) =>
+                    {
+                        if (Path.GetFileName(path) == "thunderstore.toml")
+                        {
+                            content.Replace("\".{TempPath}\"", "\"./tmp\"");
+                        }
+                    }
+                )
+        );
 
         VerificationEngine engine = new(logger);
 
