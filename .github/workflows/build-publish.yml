@@ -25,6 +25,11 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build -c Release
+    - name: Upload release artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: nupkg-release
+        path: bin/Release/*.nupkg
     - name: Get Version
       id: version
       run: |-
