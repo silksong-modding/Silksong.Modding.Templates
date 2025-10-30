@@ -9,22 +9,20 @@ internal static class PathHelper
     private static string GetRootDir()
     {
         string assemblyPath = typeof(SilksongPluginTest).Assembly.Location;
-        string? rootPath = new FileInfo(assemblyPath)
-            .Directory
-            ?.Parent
-            ?.Parent
-            ?.Parent
-            ?.Parent
-            ?.FullName;
+        DirectoryInfo? rootDir = new FileInfo(assemblyPath).Directory;
+        // iterate up the directory tree until we find where the solution lives (or we hit the file system root)
+        while (
+            rootDir != null
+            && !File.Exists(Path.Combine(rootDir.FullName, "Silksong.Modding.Templates.sln"))
+        )
+        {
+            rootDir = rootDir.Parent;
+        }
+        string? rootPath = rootDir?.FullName;
 
         if (string.IsNullOrEmpty(rootPath))
         {
             throw new InvalidOperationException("The codebase root was not found");
-        }
-
-        if (!File.Exists(Path.Combine(rootPath, "Silksong.Modding.Templates.sln")))
-        {
-            throw new InvalidOperationException("The codebase root did not contain the solution");
         }
         return rootPath;
     }
