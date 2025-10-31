@@ -15,6 +15,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      NUPKG_PATH: Silksong.Modding.Templates/bin/Release/*.nupkg
+
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
@@ -27,17 +30,11 @@ jobs:
       run: dotnet build -c Release
     - name: Test
       run: dotnet test -c Release
-    - name: Determine Nupkg Path
-      id: nupkg_path
-      run: |-
-        NUPKG_PATH="Silksong.Modding.Templates/bin/Release/*.nupkg"
-        echo "Nupkg path: $NUPKG_PATH"
-        echo "path=$NUPKG_PATH" >> $GITHUB_OUTPUT
     - name: Upload release artifact
       uses: actions/upload-artifact@v5
       with:
         name: nupkg-release
-        path: ${{ steps.nupkg_path.outputs.path }}
+        path: ${{ env.NUPKG_PATH }}
     - name: Get Version
       id: version
       run: |-
@@ -55,7 +52,7 @@ jobs:
       id: publish
       if: github.event_name == 'push'
       run: |-
-        dotnet nuget push ${{ steps.nupkg_path.outputs.path }} \
+        dotnet nuget push ${{ env.NUPKG_PATH }} \
           --api-key ${{ steps.login.outputs.NUGET_API_KEY }} \
           --source https://api.nuget.org/v3/index.json
       continue-on-error: true
