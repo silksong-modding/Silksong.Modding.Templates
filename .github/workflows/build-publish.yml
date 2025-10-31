@@ -27,6 +27,11 @@ jobs:
       run: dotnet build -c Release
     - name: Test
       run: dotnet test -c Release
+    - name: Upload release artifact
+      uses: actions/upload-artifact@v5
+      with:
+        name: nupkg-release
+        path: Silksong.Modding.Templates/bin/Release/*.nupkg
     - name: Get Version
       id: version
       run: |-
