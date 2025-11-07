@@ -41,6 +41,11 @@ public class SilksongPluginTest(ITestOutputHelper output)
                 ["--username", "MyUsername"]
             ),
             new NamedTemplateScenario(
+                "SpecificSilksongVersion",
+                "SilksongTemplateTester",
+                ["--username", "MyUsername", "--game-version", "1.0.29242"]
+            ),
+            new NamedTemplateScenario(
                 "ThunderstoreOverride",
                 "SilksongTemplateTester",
                 ["--username", "MyUsername", "--thunderstore-username", "my_username"]

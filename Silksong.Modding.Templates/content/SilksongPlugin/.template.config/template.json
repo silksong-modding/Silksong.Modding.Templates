@@ -71,6 +71,10 @@
           "description": "Automatically target the latest version of the game."
         },
         {
+          "choice": "1.0.29242",
+          "description": "Bugfix and balance patch. Released Nov 7 2025."
+        },
+        {
           "choice": "1.0.28891",
           "description": "Bugfix and balance patch. Released Oct 13 2025."
         },
