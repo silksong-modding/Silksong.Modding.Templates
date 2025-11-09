@@ -11,7 +11,7 @@ updates:
     schedule:
       interval: daily
   # distinct groups so that PRs will clearly indicate if the update is for the template package, or the template content
-  - directory: /content/
+  - directory: content/
     package-ecosystem: nuget
     ignore:
       - dependency-name: BepInEx.Core
@@ -19,7 +19,8 @@ updates:
       - dependency-name: UnityEngine.Modules
     schedule:
       interval: daily
-  - directory: /content/
+  - directories:
+      - content/**/.github/workflows/
     package-ecosystem: github-actions
     schedule:
       interval: daily
