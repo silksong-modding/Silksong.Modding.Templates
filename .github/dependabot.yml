@@ -1,12 +1,12 @@
 version: 2    
 updates:
   - directory: /
-    exclude-paths: ["/content/"]
+    exclude-paths: ["content/"]
     package-ecosystem: nuget
     schedule:
       interval: daily
   - directory: /
-    exclude-paths: ["/content/"]
+    exclude-paths: ["content/"]
     package-ecosystem: github-actions
     schedule:
       interval: daily
