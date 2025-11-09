@@ -1,17 +1,17 @@
 version: 2    
 updates:
   - directory: /
-    exclude-paths: ["content/"]
+    exclude-paths: ["Silksong.Modding.Templates/content/"]
     package-ecosystem: nuget
     schedule:
       interval: daily
   - directory: /
-    exclude-paths: ["content/"]
+    exclude-paths: ["Silksong.Modding.Templates/content/"]
     package-ecosystem: github-actions
     schedule:
       interval: daily
   # distinct groups so that PRs will clearly indicate if the update is for the template package, or the template content
-  - directory: content/
+  - directory: Silksong.Modding.Templates/content/
     package-ecosystem: nuget
     ignore:
       - dependency-name: BepInEx.Core
@@ -20,7 +20,7 @@ updates:
     schedule:
       interval: daily
   - directories:
-      - content/**/.github/workflows/
+      - Silksong.Modding.Templates/content/**/.github/workflows/
     package-ecosystem: github-actions
     schedule:
       interval: daily
