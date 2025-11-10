@@ -25,7 +25,7 @@
       Version="9.0.306"
     />
     <PackageReference Include="Verify.Xunit" Version="31.4.3" />
-    <PackageReference Include="CSharpier.MsBuild" Version="1.1.2" />
+    <PackageReference Include="CSharpier.MsBuild" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Snapshots/**/*" />
