@@ -29,7 +29,7 @@
       IsImplicitlyDefined="True"
     />
     <!-- CSharpier.MsBuild automatically formats code during Debug builds. Run 'dotnet build' to format all files. -->
-    <PackageReference Include="CSharpier.MsBuild" Version="1.1.2" />
+    <PackageReference Include="CSharpier.MsBuild" Version="1.2.1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="content/**/*" />
