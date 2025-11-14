@@ -6,7 +6,7 @@ namespace Silksong.Plugin._1;
 [BepInAutoPlugin(id: "io.github.username.plugin__1")]
 public partial class Plugin__1Plugin : BaseUnityPlugin
 {
-    private void Awake()
+    private void Start()
     {
         // Put your initialization logic here
         Logger.LogInfo($"Plugin {Name} ({Id}) has loaded!");
