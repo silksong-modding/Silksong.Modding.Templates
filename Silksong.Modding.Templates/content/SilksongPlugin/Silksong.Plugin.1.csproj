@@ -19,9 +19,9 @@
     <RestoreLockedMode Condition="'$(CI)' == 'true'">True</RestoreLockedMode>
 
     <!--#endif -->
-    <!--Allow access of private members at runtime.-->
+    <!-- Allow access of private members at runtime -->
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <!--Shortens and anonymizes paths in debug symbols relative to the project directory. Breakpoints will not work, however.-->
+    <!-- Shortens and anonymizes paths in debug symbols relative to the project directory. Breakpoints will not work, however. -->
     <PathMap Condition="'$(Configuration)' == 'Release'">$(MSBuildProjectDirectory)=/</PathMap>
 
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -67,11 +67,15 @@
     <PropertyGroup>
       <ThunderstoreDir>$(ProjectDir)/thunderstore</ThunderstoreDir>
     </PropertyGroup>
+
+    <!-- Local install -->
     <Copy
       SourceFiles="@(Binaries)"
-      DestinationFolder="$(SilksongFolder)/BepInEx/plugins/ThunderstoreUserName-$(AssemblyTitle)/%(Binaries.LocalDir)"
-      Condition="'$(SilksongFolder)' != '' And Exists('$(SilksongFolder)')"
+      DestinationFolder="$(SilksongPluginsFolder)/ThunderstoreUserName-$(AssemblyTitle)/%(Binaries.LocalDir)"
+      Condition="'$(SilksongPluginsFolder)' != '' And Exists('$(SilksongPluginsFolder)')"
     />
+
+    <!-- Thunderstore packaging -->
     <RemoveDir Directories="$(ThunderstoreDir)/temp;$(ThunderstoreDir)/dist" />
     <MakeDir Directories="$(ThunderstoreDir)/temp" />
     <Copy

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DiffEngine;
+using Microsoft.Extensions.Logging;
 using Microsoft.TemplateEngine.Authoring.TemplateVerifier;
 using Silksong.Modding.Templates.Tests.ScenarioModel;
 using Xunit.Abstractions;
