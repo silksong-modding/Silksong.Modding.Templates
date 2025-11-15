@@ -71,6 +71,10 @@
           "description": "Automatically target the latest version of the game."
         },
         {
+          "choice": "1.0.29315",
+          "description": "Undocumented patch. Released Nov 12 2025."
+        },
+        {
           "choice": "1.0.29242",
           "description": "Bugfix and balance patch. Released Nov 7 2025."
         },
