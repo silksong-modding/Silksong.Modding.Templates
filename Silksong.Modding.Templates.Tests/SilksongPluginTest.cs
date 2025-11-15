@@ -1,3 +1,4 @@
+using DiffEngine;
 using Microsoft.Extensions.Logging;
 using Microsoft.TemplateEngine.Authoring.TemplateVerifier;
 using Silksong.Modding.Templates.Tests.ScenarioModel;
@@ -27,6 +28,8 @@ public class SilksongPluginTest(ITestOutputHelper output)
                 "thunderstore/icon.png"
             ),
         };
+        // The volume of files in a given change is generally much higher than the default 5 for this test suite
+        DiffRunner.MaxInstancesToLaunch(20);
 
         VerificationEngine engine = new(logger);
 
