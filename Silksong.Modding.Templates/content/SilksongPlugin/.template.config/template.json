@@ -138,24 +138,6 @@
         ]
       }
     },
-    "monodetour-hookgen-strip-flag": {
-      "type": "generated",
-      "generator": "switch",
-      "replaces": "MONODETOUR_HOOKGEN_STRIP_FLAG",
-      "parameters": {
-        "dataType": "string",
-        "cases": [
-          {
-            "condition": "monodetour",
-            "value": "\n  <!--\n  This property reduces the size of the built assembly with no impact on function.\n  If manually publishing (rather than using GitHub actions), the condition should be changed to:\n  PropertyGroup Condition=\"'$(Configuration)' == 'Release'\"\n  -->\n  <PropertyGroup Condition=\"'$(CI)' == 'true'\">\n    <MonoDetourHookGenStripUnusedHooks>true</MonoDetourHookGenStripUnusedHooks>\n  </PropertyGroup>\n",
-          },
-          {
-             "condition": "",
-            "value": ""
-          }
-        ]
-      }
-    },
     "unity-version": {
       "type": "generated",
       "replaces": "UnityVersion",
