@@ -111,6 +111,51 @@
       "description": "Whether to enable PolySharp to polyfill newer language features that do not require runtime support.",
       "defaultValue": "false"
     },
+    "monodetour": {
+      "type": "parameter",
+      "datatype": "bool",
+      "displayName": "Enable MonoDetour?",
+      "description": "Whether to enable MonoDetour for alternative method hooking. Harmony and MonoMod will be available independent of this setting.",
+      "defaultValue": "false",
+      "shortName": "md"
+    },
+    "monodetour-ts-dependency": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "MONODETOUR_TS_DEPENDENCY_PLACEHOLDER",
+      "parameters": {
+        "dataType": "string",
+        "cases": [
+          {
+            "condition": "monodetour",
+            // Thunderstore version doesn't matter so it is not problematic if this is not up to date.
+            "value": "MonoDetour-MonoDetour_BepInEx_5 = \"0.7.7\""
+          },
+          {
+            "condition": "",
+            "value": ""
+          }
+        ]
+      }
+    },
+    "monodetour-hookgen-strip-flag": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "MONODETOUR_HOOKGEN_STRIP_FLAG",
+      "parameters": {
+        "dataType": "string",
+        "cases": [
+          {
+            "condition": "monodetour",
+            "value": "\n  <!--\n  This property reduces the size of the built assembly with no impact on function.\n  If manually publishing (rather than using GitHub actions), the condition should be changed to:\n  PropertyGroup Condition=\"'$(Configuration)' == 'Release'\"\n  -->\n  <PropertyGroup Condition=\"'$(CI)' == 'true'\">\n    <MonoDetourHookGenStripUnusedHooks>true</MonoDetourHookGenStripUnusedHooks>\n  </PropertyGroup>\n",
+          },
+          {
+             "condition": "",
+            "value": ""
+          }
+        ]
+      }
+    },
     "unity-version": {
       "type": "generated",
       "replaces": "UnityVersion",
@@ -202,6 +247,34 @@
       "args": {
         "referenceType": "package",
         "reference": "PolySharp"
+      }
+    },
+    {
+      "description": "Adding reference to MonoDetour",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "condition": "monodetour",
+      "manualInstructions": [
+        {
+          "text": "Run `dotnet add package MonoDetour`"
+        }
+      ],
+      "args": {
+        "referenceType": "package",
+        "reference": "MonoDetour"
+      }
+    },
+    {
+      "description": "Adding reference to MonoDetour.HookGen",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "condition": "monodetour",
+      "manualInstructions": [
+        {
+          "text": "Run `dotnet add package MonoDetour.HookGen`"
+        }
+      ],
+      "args": {
+        "referenceType": "package",
+        "reference": "MonoDetour.HookGen"
       }
     },
     {
