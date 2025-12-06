@@ -52,7 +52,6 @@
       Condition="'$(game-version)' != 'latest'"
     />
   </ItemGroup>
-
   <!--#if (monodetour == 'true') -->
   <!--
   This property reduces the size of the built assembly with no impact on function.
