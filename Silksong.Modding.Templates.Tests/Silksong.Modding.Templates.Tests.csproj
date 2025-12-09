@@ -22,7 +22,7 @@
     <PackageReference Include="Neovolve.Logging.Xunit" Version="6.3.0" />
     <PackageReference
       Include="Microsoft.TemplateEngine.Authoring.TemplateVerifier"
-      Version="10.0.100"
+      Version="10.0.101"
     />
     <PackageReference Include="Verify.Xunit" Version="31.8.0" />
     <PackageReference Include="CSharpier.MsBuild" Version="1.2.1" />
