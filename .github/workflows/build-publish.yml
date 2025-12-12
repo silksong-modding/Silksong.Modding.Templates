@@ -31,7 +31,7 @@ jobs:
     - name: Test
       run: dotnet test -c Release
     - name: Upload release artifact
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: nupkg-release
         path: ${{ env.NUPKG_PATH }}
