@@ -50,18 +50,18 @@ jobs:
         echo Version is $VERSION
         echo "version=$VERSION" >> $GITHUB_OUTPUT
     - name: Upload thunderstore artifact
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: mod-bundle
         path: thunderstore/dist
     - name: Upload nuget artifact
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: nuget
         path: nuget/
     - name: Check if release needed
       id: needs-release
-      uses: mukunku/tag-exists-action@v1.6.0
+      uses: mukunku/tag-exists-action@v1.7.0
       if: github.event_name == 'push'
       with:
         tag: v${{ steps.version.outputs.version }}
@@ -103,7 +103,7 @@ jobs:
     - name: Restore tools
       run: dotnet tool restore
     - name: Download artifact
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v7
       with:
         name: mod-bundle
         path: thunderstore/dist
@@ -141,7 +141,7 @@ jobs:
       with:
         dotnet-version: 9.x
     - name: Download artifact
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v7
       with:
         name: nuget
         path: nuget/
@@ -162,7 +162,7 @@ jobs:
 
     steps:
     - name: Download artifact
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v7
       with:
         name: mod-bundle
         path: thunderstore/dist
