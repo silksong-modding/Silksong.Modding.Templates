@@ -12,3 +12,8 @@ updates:
     package-ecosystem: github-actions
     schedule:
       interval: daily
+    groups:
+      artifacts:
+        patterns:
+          - actions/upload-artifact
+          - actions/download-artifact
