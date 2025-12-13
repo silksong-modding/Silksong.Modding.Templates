@@ -19,8 +19,16 @@ updates:
       - dependency-name: UnityEngine.Modules
     schedule:
       interval: daily
+    groups:
+      content-deps:
+        patterns: 
+          - *
   - directories:
       - Silksong.Modding.Templates/content/**/.github/workflows/
     package-ecosystem: github-actions
     schedule:
       interval: daily
+    groups:
+      content-deps:
+        patterns:
+          - *
