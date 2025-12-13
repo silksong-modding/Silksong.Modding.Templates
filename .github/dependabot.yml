@@ -22,7 +22,7 @@ updates:
     groups:
       content-deps:
         patterns: 
-          - *
+          - "*"
   - directories:
       - Silksong.Modding.Templates/content/**/.github/workflows/
     package-ecosystem: github-actions
@@ -31,4 +31,4 @@ updates:
     groups:
       content-deps:
         patterns:
-          - *
+          - "*"
