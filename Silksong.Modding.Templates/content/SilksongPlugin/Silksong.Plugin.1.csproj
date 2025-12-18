@@ -51,6 +51,16 @@
       Condition="'$(game-version)' != 'latest'"
     />
   </ItemGroup>
+  <!--#if (monodetour == 'true') -->
+  <!--
+  This property reduces the size of the built assembly with no impact on function.
+  If manually publishing (rather than using GitHub actions), the condition should be changed to:
+  PropertyGroup Condition=\"'$(Configuration)' == 'Release'\"
+  -->
+  <PropertyGroup Condition=\"'$(CI)' == 'true'\">
+    <MonoDetourHookGenStripUnusedHooks>true</MonoDetourHookGenStripUnusedHooks>
+  </PropertyGroup>
+  <!--#endif -->
 
   <ItemGroup>
     <Folder Remove="thunderstore/temp;thunderstore/dist" />
