@@ -27,11 +27,6 @@
     <RepositoryUrl>https://github.com/UserName/Silksong.Plugin.1</RepositoryUrl>
   </PropertyGroup>
 
-  <!-- Do not modify - configure the SilksongFolder property in SilksongPath.props -->
-  <PropertyGroup>
-    <ManagedDir>$([MSBuild]::NormalizeDirectory('$(SilksongFolder)/Hollow Knight Silksong_Data/Managed'))</ManagedDir>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
@@ -40,33 +35,32 @@
     <PackageReference Include="Hamunii.BepInEx.AutoPlugin" Version="2.0.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Unity.Analyzers" Version="1.25.0" PrivateAssets="all" />
     <PackageReference
-      Include="BepInEx.AssemblyPublicizer.MSBuild"
-      Version="0.4.2"
-      PrivateAssets="all"
-    />
-    <PackageReference
       Include="UnityEngine.Modules"
       Version="UnityVersion"
       IncludeAssets="compile"
     />
     <PackageReference
+      Include="BepInEx.AssemblyPublicizer.MSBuild"
+      Version="0.4.3"
+      PrivateAssets="all"
+    />
+    <!--#if (game-version == 'latest') -->
+    <PackageReference
       Include="Silksong.GameLibs"
       Version="*-*"
       PrivateAssets="all"
-      Condition="'$(game-version)' == 'latest'"
+      Condition="!Exists('$(ManagedDir)')"
     />
+    <!--#else -->
     <PackageReference
       Include="Silksong.GameLibs"
       Version="1.2.0-silksongSilksongVersion"
       PrivateAssets="all"
-      Condition="'$(game-version)' != 'latest'"
+      Condition="!Exists('$(ManagedDir)')"
     />
+    <!--#endif  -->
   </ItemGroup>
 
-  <!--
-  TODO: Somehow figure out how to make this only apply when game-version is latest.
-        Also figure out how to not reference the GameLibs if our condition here is true.
-  -->
   <ItemGroup Condition="Exists('$(ManagedDir)')">
     <!--
       Reference all assemblies except ones that come
