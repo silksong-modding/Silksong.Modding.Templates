@@ -78,16 +78,20 @@ jobs:
   release-thunderstore:
     needs:
       - build
+      - secret-check
     runs-on: ubuntu-latest
     if: |
+      needs.secret-check.outputs.has-thunderstore-secret == 'true' &&
       (
-        github.event_name == 'push' &&
-        needs.build.outputs.allow-release == 'true' &&
-        needs.build.outputs.is-new-version == 'true'
-      ) ||
-      (
-        github.event_name == 'workflow_dispatch' &&
-        github.event.inputs.force_thunderstore == 'true'
+        (
+          github.event_name == 'push' &&
+          needs.build.outputs.allow-release == 'true' &&
+          needs.build.outputs.is-new-version == 'true'
+        ) ||
+        (
+          github.event_name == 'workflow_dispatch' &&
+          github.event.inputs.force_thunderstore == 'true'
+        )
       )
     # Do not substitute your Thunderstore API key in this workflow! Instead, add a secret to your repository.
     # https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets
@@ -108,7 +112,6 @@ jobs:
         name: mod-bundle
         path: thunderstore/dist
     - name: Publish to Thunderstore
-      if: env.THUNDERSTORE_API_KEY != ''
       run: |-
         dotnet tcli publish \
           --config-path thunderstore/thunderstore.toml \
@@ -119,16 +122,20 @@ jobs:
   release-nuget:
     needs:
       - build
+      - secret-check 
     runs-on: ubuntu-latest
     if: |
+      needs.secret-check.outputs.has-nuget-secret == 'true' && 
       (
-        github.event_name == 'push' && 
-        needs.build.outputs.allow-release == 'true' && 
-        needs.build.outputs.is-new-version == 'true'
-      ) ||
-      (
-        github.event_name == 'workflow_dispatch' &&
-        github.event.inputs.force_nuget == 'true'
+        (
+          github.event_name == 'push' && 
+          needs.build.outputs.allow-release == 'true' && 
+          needs.build.outputs.is-new-version == 'true'
+        ) ||
+        (
+          github.event_name == 'workflow_dispatch' &&
+          github.event.inputs.force_nuget == 'true'
+        )
       )
     # Do not substitute your NuGet API key in this workflow! Instead, add a secret to your repository
     # https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets
@@ -146,7 +153,6 @@ jobs:
         name: nuget
         path: nuget/
     - name: Publish to NuGet
-      if: env.NUGET_API_KEY != ''
       run: |-
         dotnet nuget push nuget/*.nupkg \
           --api-key $NUGET_API_KEY \
@@ -177,3 +183,11 @@ jobs:
           Build attested at ${{ needs.build.outputs.attestation-url }}
         files: |
           thunderstore/dist/*.zip
+
+  secret-check:
+    runs-on: ubuntu-latest
+    outputs:
+      has-nuget-secret: ${{ secrets.NUGET_API_KEY != '' }}
+      has-thunderstore-secret: ${{ secrets.THUNDERSTORE_API_KEY != '' }}
+    steps:
+      - run: echo no-op
