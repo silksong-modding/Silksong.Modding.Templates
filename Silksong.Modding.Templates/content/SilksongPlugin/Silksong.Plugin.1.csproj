@@ -36,10 +36,10 @@
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
     <!--#if (hook-style == 'harmony') -->
     <PackageReference Include="HarmonyX" Version="2.9.0" />
-    <PackageReference Include="Harmonize" Version="1.0.3" />
+    <PackageReference Include="Harmonize" Version="1.0.3" PrivateAssets="all" />
     <!--#elseif (hook-style == 'monodetour') -->
-    <PackageReference Include="MonoDetour" Version="[0.7.0,2.0.0)" />
-    <PackageReference Include="MonoDetour.HookGen" Version="*" />
+    <PackageReference Include="MonoDetour" Version="[*,2.0.0)" />
+    <PackageReference Include="MonoDetour.HookGen" Version="0.7.6" PrivateAssets="all" />
     <!--#endif -->
     <PackageReference Include="Hamunii.BepInEx.AutoPlugin" Version="2.0.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Unity.Analyzers" Version="1.25.0" PrivateAssets="all" />
