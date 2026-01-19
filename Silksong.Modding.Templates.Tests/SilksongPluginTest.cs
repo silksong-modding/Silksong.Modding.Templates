@@ -58,5 +58,10 @@ public class SilksongPluginTest(ITestOutputHelper output)
                 "Silksong.TemplateTester",
                 ["--username", "MyUsername"]
             ),
+            new NamedTemplateScenario(
+                "MonoDetour",
+                "SilksongTemplateTester",
+                ["--username", "MyUsername", "--hook-style", "monodetour"]
+            ),
         ];
 }

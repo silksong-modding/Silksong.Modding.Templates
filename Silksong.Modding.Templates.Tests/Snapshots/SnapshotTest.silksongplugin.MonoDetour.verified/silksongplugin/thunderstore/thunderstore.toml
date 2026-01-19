@@ -3,12 +3,12 @@ schemaVersion = "0.0.1"
 
 [package]
 # The name of the team you are publishing as
-namespace = "ThunderstoreUserName"
+namespace = "MyUsername"
 # max 250 characters
 description = "Example mod description"
 
 # Replace this with a correct repo URL if the default is not accurate
-websiteUrl = "https://github.com/UserName/Silksong.Plugin.1"
+websiteUrl = "https://github.com/MyUsername/SilksongTemplateTester"
 containsNsfwContent = false
 
 
@@ -16,9 +16,7 @@ containsNsfwContent = false
 [package.dependencies]
 BepInEx-BepInExPack_Silksong = "5.4.2304"
 
-//#if (hook-style == 'monodetour')
 MonoDetour-MonoDetour_BepInEx_5 = "0.7.10"
-//#endif
 
 # in most cases you should not change this build block, or the first build.copy block; the dist and tmp directories are used
 # by other build scripts
