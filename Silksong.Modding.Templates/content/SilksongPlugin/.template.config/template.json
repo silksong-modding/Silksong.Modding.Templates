@@ -130,6 +130,23 @@
         ]
       }
     },
+    "hook-style": {
+      "type": "parameter",
+      "datatype": "choice",
+      "displayName": "Hook Style",
+      "description": "The preferred style of hooks to use in the plugin",
+      "defaultValue": "harmony",
+      "choices": [
+        {
+          "choice": "harmony",
+          "description": "Use Harmony for hooks"
+        },
+        {
+          "choice": "monodetour",
+          "description": "Use MonoDetour for hooks"
+        }
+      ]
+    },
     "stripped-class-name": {
       "type": "derived",
       "valueSource": "name",
