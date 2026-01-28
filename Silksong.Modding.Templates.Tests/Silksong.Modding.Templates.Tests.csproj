@@ -24,7 +24,7 @@
       Include="Microsoft.TemplateEngine.Authoring.TemplateVerifier"
       Version="10.0.102"
     />
-    <PackageReference Include="Verify.Xunit" Version="31.9.4" />
+    <PackageReference Include="Verify.Xunit" Version="31.10.0" />
     <PackageReference Include="CSharpier.MsBuild" Version="1.2.5" />
   </ItemGroup>
   <ItemGroup>
