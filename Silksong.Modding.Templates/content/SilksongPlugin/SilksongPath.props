@@ -4,4 +4,9 @@
     <!-- If you use a mod manager rather than manually installing BepInEx, this should be a profile directory for that mod manager. -->
     <SilksongPluginsFolder>$(SilksongFolder)/BepInEx/plugins</SilksongPluginsFolder>
   </PropertyGroup>
+
+  <!-- Do not modify - configure the SilksongFolder property instead. -->
+  <PropertyGroup>
+    <ManagedDir>$(SilksongFolder)/Hollow Knight Silksong_Data/Managed/</ManagedDir>
+  </PropertyGroup>
 </Project>
