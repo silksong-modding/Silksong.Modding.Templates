@@ -1,0 +1,71 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a feature! Please fill out the information below to help us understand your request.
+
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User Story
+      description: Describe the use case from a user perspective. Start with "As a..."
+      placeholder: |
+        As a [type of user],
+        I want [some goal or objective],
+        So that [some reason or benefit].
+        
+        Example:
+        As a mod developer,
+        I want to use a pre-configured linting setup,
+        So that I can maintain code quality without manual configuration.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Need
+      description: What problem does this feature solve? What need does it address?
+      placeholder: Describe the current situation and why this feature is needed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed solution to address the need.
+      placeholder: How would you like to see this feature implemented?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions or workarounds?
+      placeholder: Describe any alternatives you've thought about.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or examples about the feature request.
+      placeholder: Any additional information that might be helpful.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our contribution guidelines.
+      options:
+        - label: I have read and agree to follow the project's contribution guidelines
+          required: true

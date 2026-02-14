@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/silksong-modding/Silksong.Modding.Templates/blob/main/README.md
+    about: Check out the documentation for usage instructions and examples
