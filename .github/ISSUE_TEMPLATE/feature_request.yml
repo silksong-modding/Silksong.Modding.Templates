@@ -7,21 +7,38 @@ body:
     attributes:
       value: |
         Thanks for taking the time to suggest a feature! Please fill out the information below to help us understand your request.
+        
+        ## User Story
+        Please describe your use case by completing the following three parts:
+
+  - type: dropdown
+    id: persona
+    attributes:
+      label: As a...
+      description: Select the type of user this feature is for
+      options:
+        - Mod Developer
+        - Mod User
+        - Template Maintainer
+        - Other
+    validations:
+      required: true
 
   - type: textarea
-    id: user-story
+    id: goal
     attributes:
-      label: User Story
-      description: Describe the use case from a user perspective. Start with "As a..."
-      placeholder: |
-        As a [type of user],
-        I want [some goal or objective],
-        So that [some reason or benefit].
-        
-        Example:
-        As a mod developer,
-        I want to use a pre-configured linting setup,
-        So that I can maintain code quality without manual configuration.
+      label: I want...
+      description: What is the goal or objective?
+      placeholder: Describe what you want to be able to do (e.g., "to use a pre-configured linting setup")
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefit
+    attributes:
+      label: So that...
+      description: What is the reason or benefit?
+      placeholder: Describe why this is valuable (e.g., "I can maintain code quality without manual configuration")
     validations:
       required: true
 
