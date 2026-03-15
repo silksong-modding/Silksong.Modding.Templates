@@ -84,8 +84,10 @@ jobs:
       - build
       - secret-check
     runs-on: ubuntu-latest
+    # thunderstore doesn't support prerelease versions in semver so if it was used we need to skip publishing
     if: |
       needs.secret-check.outputs.has-thunderstore-secret == 'true' &&
+      !contains(needs.build.outputs.version, '-') &&
       (
         (
           github.event_name == 'push' &&
