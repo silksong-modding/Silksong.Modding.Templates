@@ -8,6 +8,12 @@ updates:
       - dependency-name: UnityEngine.Modules
     schedule:
       interval: daily
+    groups:
+      silksong-libraries:
+        patterns:
+          - Silksong.*
+        exclude-patterns:
+          - Silksong.GameLibs 
   - directory: /
     package-ecosystem: github-actions
     schedule:
