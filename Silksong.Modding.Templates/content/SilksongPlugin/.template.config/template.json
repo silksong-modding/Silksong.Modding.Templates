@@ -71,6 +71,10 @@
           "description": "Automatically target the latest version of the game."
         },
         {
+          "choice": "1.0.29980",
+          "description": "Undocumented patch. Released Mar 20 2026."
+        },
+        {
           "choice": "1.0.29926",
           "description": "Undocumented patch. Released Mar 17 2026."
         },
