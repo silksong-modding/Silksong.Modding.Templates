@@ -58,7 +58,7 @@ jobs:
       continue-on-error: true
     - name: Create Release
       if: github.event_name == 'push' && steps.publish.outcome == 'success'
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         draft: false
         prerelease: ${{ contains(steps.version.outputs.version, '-') }}
