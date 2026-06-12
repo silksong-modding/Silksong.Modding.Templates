@@ -14,7 +14,7 @@ containsNsfwContent = false
 
 # dependencies are specified in the format AuthorName-PackageName = "version". You should always have at least BepInExPack_Silksong.
 [package.dependencies]
-BepInEx-BepInExPack_Silksong = "5.4.2304"
+silksong_modding-BepInExPack_Silksong = "1.0.3"
 
 //#if (hook-style == 'monodetour')
 MonoDetour-MonoDetour_BepInEx_5 = "0.7.10"
