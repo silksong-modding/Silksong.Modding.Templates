@@ -31,6 +31,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/UserName/Silksong.Plugin.1</RepositoryUrl>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
@@ -48,17 +49,43 @@
       IncludeAssets="compile"
     />
     <PackageReference
+      Include="BepInEx.AssemblyPublicizer.MSBuild"
+      Version="0.4.3"
+      PrivateAssets="all"
+    />
+    <!--#if (game-version == 'latest') -->
+    <PackageReference
       Include="Silksong.GameLibs"
       Version="*-*"
       PrivateAssets="all"
-      Condition="'$(game-version)' == 'latest'"
+      Condition="!Exists('$(ManagedDir)')"
     />
+    <!--#else -->
     <PackageReference
       Include="Silksong.GameLibs"
       Version="1.2.0-silksongSilksongVersion"
       PrivateAssets="all"
-      Condition="'$(game-version)' != 'latest'"
+      Condition="!Exists('$(ManagedDir)')"
     />
+    <!--#endif  -->
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('$(ManagedDir)')">
+    <!--
+      Reference all assemblies except ones that come
+      with our target framework or would cause conflicts.
+      Private="false" prevents these from being copied to build output.
+    -->
+    <LocalReferences
+      Include="$(ManagedDir)*.dll"
+      Exclude="$(ManagedDir)Mono*.dll;$(ManagedDir)netstandard.dll;$(ManagedDir)System*.dll;$(ManagedDir)mscorlib.dll"
+    />
+    <Reference Include="@(LocalReferences)" Private="false" />
+    <!--
+      Publicize these assemblies so we can access their internal members.
+      Learn more at: https://github.com/BepInEx/BepInEx.AssemblyPublicizer
+    -->
+    <Reference Include="$(ManagedDir)Assembly-CSharp.dll" Private="false" Publicize="true" />
   </ItemGroup>
 
   <ItemGroup>
