@@ -38,7 +38,7 @@ jobs:
     steps:
     - uses: actions/checkout@v7
     - name: Setup .NET
-      uses: actions/setup-dotnet@v5
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 10.x
     - name: Build
@@ -107,7 +107,7 @@ jobs:
     steps:
     - uses: actions/checkout@v7
     - name: Setup .NET
-      uses: actions/setup-dotnet@v5
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 9.x
     - name: Restore tools
@@ -151,7 +151,7 @@ jobs:
 
     steps:
     - name: Setup .NET
-      uses: actions/setup-dotnet@v5
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 9.x
     - name: Download artifact
