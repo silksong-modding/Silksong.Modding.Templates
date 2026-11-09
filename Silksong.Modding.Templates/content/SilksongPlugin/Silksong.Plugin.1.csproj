@@ -13,11 +13,6 @@
     <!-- Ignore warning about processor architecture mismatch with PlayMaker ConditionalExpression -->
     <NoWarn>$(NoWarn);MSB3270</NoWarn>
 
-    <!--#if (game-version == 'latest') -->
-    <RestorePackagesWithLockFile>True</RestorePackagesWithLockFile>
-    <RestoreLockedMode Condition="'$(CI)' == 'true'">True</RestoreLockedMode>
-
-    <!--#endif -->
     <!--#if (hook-style == 'monodetour') -->
     <MonoDetourHookGenStripUnusedHooks Condition="'$(CI)' == 'true'">
         true

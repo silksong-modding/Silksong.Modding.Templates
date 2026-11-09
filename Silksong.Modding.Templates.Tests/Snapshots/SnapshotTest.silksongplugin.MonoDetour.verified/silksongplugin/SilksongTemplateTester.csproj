@@ -13,9 +13,6 @@
     <!-- Ignore warning about processor architecture mismatch with PlayMaker ConditionalExpression -->
     <NoWarn>$(NoWarn);MSB3270</NoWarn>
 
-    <RestorePackagesWithLockFile>True</RestorePackagesWithLockFile>
-    <RestoreLockedMode Condition="'$(CI)' == 'true'">True</RestoreLockedMode>
-
     <MonoDetourHookGenStripUnusedHooks Condition="'$(CI)' == 'true'">
         true
     </MonoDetourHookGenStripUnusedHooks>
