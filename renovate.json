@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["local>silksong-modding/renovate"],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/examples/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/tests/**",
+    "**/__fixtures__/**",
+    "Silksong.Modding.Templates.Tests/Snapshots/**"
+  ],
+  "packageRules": [
+    {
+      "description": "Template content gets its own group so PRs clearly show whether an update is for the template package or the generated projects",
+      "matchFileNames": ["Silksong.Modding.Templates/content/**"],
+      "groupName": "content-deps"
+    },
+    {
+      "description": "Provided by the game and BepInEx at runtime; versions in generated projects must match what they ship",
+      "matchFileNames": ["Silksong.Modding.Templates/content/**"],
+      "matchPackageNames": ["BepInEx.Core", "HarmonyX", "UnityEngine.Modules"],
+      "enabled": false
+    }
+  ]
+}

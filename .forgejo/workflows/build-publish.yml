@@ -1,0 +1,63 @@
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    env:
+      NUPKG_PATH: Silksong.Modding.Templates/bin/Release/*.nupkg
+
+    steps:
+    - uses: https://code.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    - name: Setup .NET
+      uses: https://github.com/actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+      with:
+        dotnet-version: 10.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build -c Release
+    - name: Test
+      run: dotnet test -c Release
+    - name: Upload release artifact
+      uses: https://code.forgejo.org/forgejo/upload-artifact@cb8afe72b42edc798abfb8fcb556cf660d894245 # v5
+      with:
+        name: nupkg-release
+        path: ${{ env.NUPKG_PATH }}
+    - name: Get Version
+      id: version
+      run: |-
+        VERSION=$(dotnet build Silksong.Modding.Templates/Silksong.Modding.Templates.csproj -getProperty:PackageVersion)
+        echo Version is $VERSION
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+    # attempts to publish to the forge's NuGet feed on any push to main. Already-published versions are rejected
+    # (409 Conflict), which fails this step and skips the release below.
+    - name: Publish NuGet
+      id: publish
+      if: forgejo.event_name == 'push'
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: |-
+        dotnet nuget push $NUPKG_PATH \
+          --api-key "$NUGET_API_KEY" \
+          --source https://git.silksong-modding.org/api/packages/silksong-modding/nuget/index.json
+      continue-on-error: true
+    - name: Create Release
+      if: forgejo.event_name == 'push' && steps.publish.outcome == 'success'
+      uses: https://code.forgejo.org/actions/forgejo-release@98265452477dafb3f0f27ba9c462c90b18cb44fd # v2.13.4
+      with:
+        direction: upload
+        prerelease: ${{ contains(steps.version.outputs.version, '-') }}
+        tag: v${{ steps.version.outputs.version }}
+        # the package itself lives on the NuGet feed; the release only records the tag
+        skip-assets: true
