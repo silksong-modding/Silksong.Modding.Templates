@@ -8,10 +8,14 @@ Templates for modding Hollow Knight: Silksong.
 2. Ensure your IDE is up to date; Visual Studio 2026 or Rider 2025.3 or higher are recommended. Visual Studio Code should also work but has not been verified.
 3. In a terminal, navigate to the folder you want to create a mod, then run the following commands:
 ```
-> dotnet new install Silksong.Modding.Templates
+> dotnet new install Silksong.Modding.Templates --add-source https://git.silksong-modding.org/api/packages/silksong-modding/nuget/index.json
 
 > dotnet new silksongplugin --username YourGitHubUsername
 ```
+
+New versions of the template are published to the
+[silksong-modding package feed](https://git.silksong-modding.org/silksong-modding/-/packages) rather than nuget.org,
+so `--add-source` is needed to get the latest version. To upgrade an existing install, run the same install command again.
 
 By default, the template automatically targets the latest available version of the game. If you want to make mods
 specifically targeting an older version of the game, you can use the `-gv` flag to specify the version.
