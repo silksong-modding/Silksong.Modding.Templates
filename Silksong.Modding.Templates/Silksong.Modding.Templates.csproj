@@ -24,12 +24,12 @@
   <ItemGroup>
     <PackageReference
       Include="Microsoft.TemplateEngine.Authoring.Tasks"
-      Version="8.0.414"
+      Version="8.0.428"
       PrivateAssets="all"
       IsImplicitlyDefined="True"
     />
     <!-- CSharpier.MsBuild automatically formats code during Debug builds. Run 'dotnet build' to format all files. -->
-    <PackageReference Include="CSharpier.MsBuild" Version="1.3.0" />
+    <PackageReference Include="CSharpier.MsBuild" Version="1.4.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="content/**/*" />
