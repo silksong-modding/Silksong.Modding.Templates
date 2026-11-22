@@ -9,19 +9,30 @@
     "**/__tests__/**",
     "**/test/**",
     "**/tests/**",
-    "**/__fixtures__/**",
-    "Silksong.Modding.Templates.Tests/Snapshots/**"
+    "**/__fixtures__/**"
   ],
   "packageRules": [
     {
-      "description": "Template content gets its own group so PRs clearly show whether an update is for the template package or the generated projects",
-      "matchFileNames": ["Silksong.Modding.Templates/content/**"],
+      "description": "Template content gets its own group so PRs clearly show whether an update is for the template package or the generated projects. Snapshots are included so they move in lockstep with the content they are generated from",
+      "matchFileNames": [
+        "Silksong.Modding.Templates/content/**",
+        "Silksong.Modding.Templates.Tests/Snapshots/**"
+      ],
       "groupName": "content-deps"
     },
     {
       "description": "Provided by the game and BepInEx at runtime; versions in generated projects must match what they ship",
-      "matchFileNames": ["Silksong.Modding.Templates/content/**"],
+      "matchFileNames": [
+        "Silksong.Modding.Templates/content/**",
+        "Silksong.Modding.Templates.Tests/Snapshots/**"
+      ],
       "matchPackageNames": ["BepInEx.Core", "HarmonyX", "UnityEngine.Modules"],
+      "enabled": false
+    },
+    {
+      "description": "Snapshot GameLibs versions come from test parameters (e.g. --game-version), not template content",
+      "matchFileNames": ["Silksong.Modding.Templates.Tests/Snapshots/**"],
+      "matchPackageNames": ["Silksong.GameLibs"],
       "enabled": false
     }
   ]
