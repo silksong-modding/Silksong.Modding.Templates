@@ -40,7 +40,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v6
       with:
-        dotnet-version: 10.x
+        dotnet-version: 11.x
     - name: Build
       run: dotnet build -c Release --verbosity normal
     - name: Pack
@@ -109,7 +109,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v6
       with:
-        dotnet-version: 9.x
+        dotnet-version: 11.x
     - name: Restore tools
       run: dotnet tool restore
     - name: Download artifact
@@ -153,7 +153,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v6
       with:
-        dotnet-version: 9.x
+        dotnet-version: 11.x
     - name: Download artifact
       uses: actions/download-artifact@v8
       with:
