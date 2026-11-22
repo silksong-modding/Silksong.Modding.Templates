@@ -30,6 +30,15 @@
       "enabled": false
     },
     {
+      "description": "Don't pin action digests in generated projects; consumers can opt into pinning with their own Renovate config",
+      "matchFileNames": [
+        "Silksong.Modding.Templates/content/**",
+        "Silksong.Modding.Templates.Tests/Snapshots/**"
+      ],
+      "matchDepTypes": ["action"],
+      "pinDigests": false
+    },
+    {
       "description": "Snapshot GameLibs versions come from test parameters (e.g. --game-version), not template content",
       "matchFileNames": ["Silksong.Modding.Templates.Tests/Snapshots/**"],
       "matchPackageNames": ["Silksong.GameLibs"],
