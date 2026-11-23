@@ -24,7 +24,7 @@
   <ItemGroup>
     <PackageReference
       Include="Microsoft.TemplateEngine.Authoring.Tasks"
-      Version="8.0.428"
+      Version="11.0.100"
       PrivateAssets="all"
       IsImplicitlyDefined="True"
     />
