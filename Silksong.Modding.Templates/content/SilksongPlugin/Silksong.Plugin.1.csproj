@@ -33,7 +33,7 @@
     <PackageReference Include="Harmonize" Version="1.0.6" PrivateAssets="all" />
     <!--#if (hook-style == 'monodetour') -->
     <PackageReference Include="MonoDetour" Version="[*,2.0.0)" />
-    <PackageReference Include="MonoDetour.HookGen" Version="0.7.17" PrivateAssets="all" />
+    <PackageReference Include="MonoDetour.HookGen" Version="0.7.19" PrivateAssets="all" />
     <!--#endif -->
     <PackageReference Include="Hamunii.BepInEx.AutoPlugin" Version="2.1.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Unity.Analyzers" Version="1.28.0" PrivateAssets="all" />
